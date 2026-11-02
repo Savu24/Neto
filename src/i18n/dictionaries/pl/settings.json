@@ -1,0 +1,13 @@
+{
+  "title": "Ustawienia",
+  "appearance": "Wygląd i język",
+  "theme": "Motyw",
+  "themeSystem": "Systemowy",
+  "themeLight": "Jasny",
+  "themeDark": "Ciemny",
+  "language": "Język",
+  "languagePl": "Polski",
+  "languageEn": "English",
+  "baseCurrency": "Waluta bazowa",
+  "baseCurrencyValue": "PLN, zmiana wkrótce"
+}

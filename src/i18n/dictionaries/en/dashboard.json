@@ -1,0 +1,9 @@
+{
+  "title": "Dashboard",
+  "netWorth": "Net worth",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "emptyTitle": "Start with your first account",
+  "emptyBody": "Add an account, deposit, investment or loan. We will work out your net worth.",
+  "emptyAction": "Add account"
+}

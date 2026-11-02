@@ -1,0 +1,7 @@
+{
+  "title": "Assets",
+  "emptyTitle": "You have no accounts yet",
+  "emptyBody": "Add an account by hand or import transactions from a CSV file.",
+  "addAccount": "Add account",
+  "importCsv": "Import from CSV"
+}

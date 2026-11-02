@@ -1,0 +1,7 @@
+{
+  "notFoundTitle": "Page not found",
+  "notFoundBody": "The address may have changed. Go back to the dashboard.",
+  "notFoundAction": "Back to dashboard",
+  "errorTitle": "The page did not load",
+  "errorBody": "Something went wrong on our side. Try again in a moment."
+}

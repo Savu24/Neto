@@ -53,7 +53,6 @@
   );
 
   // ---------- Wykres bilansu (Pulpit) ----------
-  const svgNS = "http://www.w3.org/2000/svg";
   const fmtK = (v) => `${Math.round(v)} tys.`;
 
   window.drawBalanceChart = function (el, data) {

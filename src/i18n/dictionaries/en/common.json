@@ -1,0 +1,14 @@
+{
+  "appName": "Neto",
+  "loading": "Loading…",
+  "retry": "Try again",
+  "save": "Save",
+  "cancel": "Cancel",
+  "back": "Back",
+  "hideAmounts": "Hide amounts",
+  "showAmounts": "Show amounts",
+  "notifications": "Notifications",
+  "disclaimerResults": "This data is for information only and is not investment advice. Valuations may be delayed.",
+  "disclaimerSimulation": "This is a simulation, not a guaranteed result. Results depend on assumptions you can change and are not investment advice.",
+  "demoBadge": "Stage 2: placeholder screen, no data"
+}

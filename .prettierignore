@@ -1,0 +1,11 @@
+.next
+node_modules
+coverage
+test-results
+playwright-report
+package-lock.json
+docs/mockups
+docs/SPEC.md
+mobile/ios
+src/generated
+.local-db

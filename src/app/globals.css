@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+/* Tokeny wyglądu (SPEC sekcja 20). Kolory zawsze przez te zmienne, nigdy wpisane na sztywno w komponentach. */
+:root {
+  --bg: #f1f4f2;
+  --surface: #ffffff;
+  --ink: #16212a;
+  --ink-2: #4d5a63;
+  --ink-3: #6b777e;
+  --line: #d5dcd7;
+  --brand: #1d3e63;
+  --brand-soft: #dbe4ee;
+  --on-brand: #ffffff;
+  --up: #1c7a55;
+  --down: #b5452f;
+  --down-soft: #f2ddd7;
+  --warn: #8a5f0c;
+  --warn-soft: #f6ecd6;
+  --focus: #2f6db3;
+  --chart-1: #1d3e63;
+  --chart-2: #4a7aaa;
+  --chart-3: #5b8f7b;
+  --chart-4: #9db8d3;
+  --chart-5: #c9a24a;
+  color-scheme: light;
+}
+
+/* Tryb ciemny: wybrany ręcznie (data-theme) albo systemowy. Oba bloki muszą mieć te same wartości. */
+:root[data-theme="dark"] {
+  --bg: #0e1519;
+  --surface: #16212a;
+  --ink: #e7ecea;
+  --ink-2: #b2bdc2;
+  --ink-3: #8d9aa1;
+  --line: #2a3843;
+  --brand: #8fb4dc;
+  --brand-soft: #1f3247;
+  --on-brand: #0e1519;
+  --up: #5cc49a;
+  --down: #e98b74;
+  --down-soft: #3a2521;
+  --warn: #e0b04f;
+  --warn-soft: #33291a;
+  --focus: #8fb4dc;
+  --chart-1: #8fb4dc;
+  --chart-2: #4f86bd;
+  --chart-3: #6fb096;
+  --chart-4: #c7d8ea;
+  --chart-5: #d8b25c;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1519;
+    --surface: #16212a;
+    --ink: #e7ecea;
+    --ink-2: #b2bdc2;
+    --ink-3: #8d9aa1;
+    --line: #2a3843;
+    --brand: #8fb4dc;
+    --brand-soft: #1f3247;
+    --on-brand: #0e1519;
+    --up: #5cc49a;
+    --down: #e98b74;
+    --down-soft: #3a2521;
+    --warn: #e0b04f;
+    --warn-soft: #33291a;
+    --focus: #8fb4dc;
+    --chart-1: #8fb4dc;
+    --chart-2: #4f86bd;
+    --chart-3: #6fb096;
+    --chart-4: #c7d8ea;
+    --chart-5: #d8b25c;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-on-brand: var(--on-brand);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-down-soft: var(--down-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-focus: var(--focus);
+  --font-sans: var(--font-schibsted), system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

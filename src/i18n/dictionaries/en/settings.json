@@ -1,0 +1,13 @@
+{
+  "title": "Settings",
+  "appearance": "Appearance and language",
+  "theme": "Theme",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "language": "Language",
+  "languagePl": "Polski",
+  "languageEn": "English",
+  "baseCurrency": "Base currency",
+  "baseCurrencyValue": "PLN, more coming soon"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Pulpit",
+  "netWorth": "Wartość netto",
+  "assets": "Aktywa",
+  "liabilities": "Zobowiązania",
+  "emptyTitle": "Zacznij od pierwszego konta",
+  "emptyBody": "Dodaj konto, lokatę, inwestycję albo kredyt. Wartość netto policzymy za Ciebie.",
+  "emptyAction": "Dodaj konto"
+}

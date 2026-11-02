@@ -1,0 +1,14 @@
+{
+  "appName": "Neto",
+  "loading": "Wczytywanie…",
+  "retry": "Spróbuj ponownie",
+  "save": "Zapisz",
+  "cancel": "Anuluj",
+  "back": "Wróć",
+  "hideAmounts": "Ukryj kwoty",
+  "showAmounts": "Pokaż kwoty",
+  "notifications": "Powiadomienia",
+  "disclaimerResults": "Dane mają charakter informacyjny i nie stanowią porady inwestycyjnej. Wyceny mogą być opóźnione.",
+  "disclaimerSimulation": "To symulacja, nie gwarancja wyniku. Wyniki zależą od założeń, które możesz zmienić, i nie stanowią porady inwestycyjnej.",
+  "demoBadge": "Etap 2: ekran przykładowy, bez danych"
+}

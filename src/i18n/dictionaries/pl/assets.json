@@ -1,0 +1,7 @@
+{
+  "title": "Majątek",
+  "emptyTitle": "Nie masz jeszcze żadnych kont",
+  "emptyBody": "Dodaj konto ręcznie albo zaimportuj transakcje z pliku CSV.",
+  "addAccount": "Dodaj konto",
+  "importCsv": "Importuj z pliku CSV"
+}

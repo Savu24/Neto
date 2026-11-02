@@ -1,0 +1,7 @@
+{
+  "notFoundTitle": "Nie ma takiej strony",
+  "notFoundBody": "Adres mógł się zmienić. Wróć na pulpit.",
+  "notFoundAction": "Wróć na pulpit",
+  "errorTitle": "Nie udało się wczytać strony",
+  "errorBody": "Coś poszło nie tak po naszej stronie. Spróbuj ponownie za chwilę."
+}
