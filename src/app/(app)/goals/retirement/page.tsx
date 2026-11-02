@@ -3,12 +3,14 @@ import Link from "next/link";
 import { Disclaimer, PageHeader } from "@/components/page";
 import { I18nProvider } from "@/i18n/client";
 import { getLocale, getT, pickMessages } from "@/i18n/server";
+import { requireUser } from "@/lib/auth/session";
 import { RetirementCalculator } from "./calculator";
 import { loadRetirementDefaults } from "./defaults";
 
 export const metadata: Metadata = { title: "Kalkulator emerytury" };
 
 export default async function RetirementPage() {
+  await requireUser();
   const [t, tc, locale, defaults] = await Promise.all([
     getT("retirement"),
     getT("common"),

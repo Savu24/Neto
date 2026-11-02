@@ -1,4 +1,5 @@
-import { expect, test, type Page } from "@playwright/test";
+import type { Page } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 /** Przykład z makiety Cele: 34 lata, emerytura w 60, wynik 63 / 55 / 51 lat. */
 async function fillMockupExample(page: Page) {
@@ -13,7 +14,7 @@ async function fillMockupExample(page: Page) {
 const card = (page: Page, key: "low" | "base" | "high") => page.locator(`[data-scenario="${key}"]`);
 
 test.describe("kalkulator emerytury", () => {
-  test("link z ekranu Cele prowadzi do kalkulatora", async ({ page }) => {
+  test("link z ekranu Cele prowadzi do kalkulatora", async ({ authedPage: page }) => {
     await page.goto("/goals");
     await page.getByRole("link", { name: "Otwórz kalkulator emerytury" }).click();
     await expect(page).toHaveURL(/\/goals\/retirement$/);
@@ -22,7 +23,7 @@ test.describe("kalkulator emerytury", () => {
     ).toBeVisible();
   });
 
-  test("domyślne założenia z SPEC i prośba o wiek", async ({ page }) => {
+  test("domyślne założenia z SPEC i prośba o wiek", async ({ authedPage: page }) => {
     await page.goto("/goals/retirement");
     await expect(page.getByLabel("Planowany wiek emerytalny")).toHaveValue("65");
     await expect(page.getByLabel("Stopa wypłaty")).toHaveValue("4");
@@ -30,7 +31,7 @@ test.describe("kalkulator emerytury", () => {
     await expect(page.getByRole("status")).toContainText("Wpisz wiek obecny");
   });
 
-  test("zmiana założenia zmienia wynik", async ({ page }) => {
+  test("zmiana założenia zmienia wynik", async ({ authedPage: page }) => {
     await page.goto("/goals/retirement");
     await fillMockupExample(page);
     await expect(page.getByText("1 950 000 zł", { exact: true })).toBeVisible();
@@ -52,7 +53,7 @@ test.describe("kalkulator emerytury", () => {
     await expect(page.getByLabel("Wiek obecny")).toHaveAttribute("aria-invalid", "true");
   });
 
-  test("tabela alternatywna dla wykresu", async ({ page }) => {
+  test("tabela alternatywna dla wykresu", async ({ authedPage: page }) => {
     await page.goto("/goals/retirement");
     await fillMockupExample(page);
     await page.getByText("Pokaż dane wykresu w tabeli").click();
@@ -61,14 +62,14 @@ test.describe("kalkulator emerytury", () => {
     await expect(table.getByRole("row")).toHaveCount(1 + (80 - 34 + 1));
   });
 
-  test("stałe dopiski są widoczne", async ({ page }) => {
+  test("stałe dopiski są widoczne", async ({ authedPage: page }) => {
     await page.goto("/goals/retirement");
     const notes = page.getByRole("note");
     await expect(notes.filter({ hasText: "To symulacja, nie gwarancja wyniku." })).toBeVisible();
     await expect(notes.filter({ hasText: "Dane mają charakter informacyjny" })).toBeVisible();
   });
 
-  test("brak poziomego przewijania przy 390 px", async ({ page }) => {
+  test("brak poziomego przewijania przy 390 px", async ({ authedPage: page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/goals/retirement");
     await fillMockupExample(page);
