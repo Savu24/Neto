@@ -296,7 +296,7 @@ Wejście (wszystko widoczne i edytowalne, z wartościami domyślnymi):
 Obliczenia w wartościach realnych (dzisiejsze złote), miesięczna kapitalizacja: `r_m = (1 + r)^(1/12) − 1`; `FV(n) = PV × (1 + r_m)^n + PMT × ((1 + r_m)^n − 1) / r_m` (dla r = 0: `PV + PMT × n`).
 Potrzebny kapitał = 12 × max(0, wydatki − ZUS) ÷ stopa wypłaty.
 Wynik dla każdego scenariusza: kapitał w wieku emerytalnym, czy wystarcza, oraz najwcześniejszy wiek (do 80), w którym FV ≥ potrzebny kapitał, albo „nie w tym horyzoncie”. Wykres: trzy linie kapitału w czasie i pozioma linia potrzebnego kapitału.
-Testy: zestaw przykładów zgodny z arkuszem referencyjnym (arkusz przygotowuję w Etapie 8 i dołączam do repo jako `docs/referencje/emerytura.xlsx`).
+Testy: zestaw referencyjny `docs/referencje/emerytura.csv` (11 przypadków), liczony niezależną pętlą miesięczną w `scripts/emerytura-referencja.mjs`; test porównuje z nim funkcje z tolerancją 0,01 zł (opis w `docs/referencje/README.md`). Zastępuje planowany arkusz `.xlsx`.
 
 ## 8. Model danych (Prisma, szkic)
 

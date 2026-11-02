@@ -2,5 +2,8 @@
   "title": "Goals",
   "emptyTitle": "Set your first goal",
   "emptyBody": "A goal shows your progress and the monthly amount you need.",
-  "newGoal": "New goal"
+  "newGoal": "New goal",
+  "calculatorTitle": "When can I retire",
+  "calculatorBody": "See at what age your wealth would let you retire, in three scenarios. Every assumption is visible and you can change it.",
+  "calculatorLink": "Open the retirement calculator"
 }
