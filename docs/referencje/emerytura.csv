@@ -1,0 +1,12 @@
+id,opis,wiek,wiek_emerytalny,majatek_startowy,wplata_mies,wydatki_mies,zus_mies,stopa_wyplaty,stopa_zwrotu,potrzebny_kapital,kapital_w_wieku_emerytalnym,wystarcza,najwczesniejszy_wiek,kapital_w_80
+makieta-ostrozny,przyklad z makiety Cele 1%,34,60,422870,3500,9000,2500,0.04,0.01,1950000.0000,1793475.0336,nie,63,3117409.5839
+makieta-bazowy,przyklad z makiety Cele 3%,34,60,422870,3500,9000,2500,0.04,0.03,1950000.0000,2553331.0824,tak,55,5755590.5070
+makieta-optymistyczny,przyklad z makiety Cele 5%,34,60,422870,3500,9000,2500,0.04,0.05,1950000.0000,3699115.6938,tak,51,11235170.8799
+stopa-zero,r = 0 czyli PV + PMT x n,30,60,200000,4000,5000,1000,0.04,0,1200000.0000,1640000.0000,tak,51,2600000.0000
+zus-ponad-wydatki,ZUS >= wydatki czyli potrzebny kapital 0,50,67,50000,500,3000,3200,0.04,0.03,0.0000,214997.6575,tak,50,410719.6423
+juz-osiagniety,majatek startowy ponad potrzebny kapital,45,60,3000000,0,8000,2000,0.04,0.02,1800000.0000,4037605.0150,tak,45,5999668.6580
+poza-horyzontem,nie w tym horyzoncie do 80 lat,55,65,20000,300,10000,0,0.04,0.02,3000000.0000,64158.9328,nie,,149174.4195
+wyplata-3-5,stopa wyplaty 3.5%,28,65,15000,1500,7000,1800,0.035,0.04,1782857.1429,1561432.5993,nie,68,3179037.4685
+stopa-ujemna,realna stopa -1%,35,67,150000,2500,5000,2000,0.04,-0.01,900000.0000,930017.6600,tak,66,1181859.8375
+emerytura-teraz,wiek emerytalny rowny obecnemu,62,62,900000,0,4000,2500,0.04,0.03,450000.0000,900000.0000,tak,62,1532189.7551
+stopa-7,start od zera przy 7%,25,55,0,1000,6000,0,0.04,0.07,1800000.0000,1169452.6033,nie,61,7130167.1112
