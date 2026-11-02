@@ -8,10 +8,32 @@ export default defineConfig({
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
   test: {
-    environment: "node",
-    include: ["src/**/*.test.{ts,tsx}"],
     setupFiles: ["./vitest.setup.ts"],
-    // Komponenty testujemy w jsdom: dopisz na górze pliku `// @vitest-environment jsdom`.
     restoreMocks: true,
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: "unit",
+          environment: "node",
+          include: ["src/**/*.test.{ts,tsx}"],
+          exclude: ["src/**/*.db.test.ts"],
+          // Komponenty testujemy w jsdom: dopisz na górze pliku `// @vitest-environment jsdom`.
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: "db",
+          environment: "node",
+          include: ["src/**/*.db.test.ts"],
+          globalSetup: ["./tests/db-global-setup.ts"],
+          // Jedna baza na przebieg: pliki po kolei, każdy test czyści tabele.
+          fileParallelism: false,
+          hookTimeout: 60_000,
+          testTimeout: 20_000,
+        },
+      },
+    ],
   },
 });

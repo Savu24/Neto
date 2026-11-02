@@ -39,6 +39,22 @@ PW_CHANNEL=msedge npx playwright test   # e2e na zbudowanej aplikacji; w CI chro
 - Kolory tylko przez tokeny z `globals.css` (`bg-surface`, `text-ink-2`, `text-up`, `text-down`…); tryb ciemny przez `data-theme` na `<html>` albo `prefers-color-scheme`.
 - Ścieżki aplikacji po angielsku (`/dashboard`, `/assets`, `/goals`, `/settings`), teksty po polsku i angielsku ze słowników.
 - `mobile/`: powłoka Capacitor (Etap 11), własny `package.json`.
+- Kwoty i ilości w logice: `D()` z `src/lib/money.ts` (decimal.js), nigdy `number`.
+
+## Baza
+
+- Prisma 7 (`prisma/schema.prisma`, klient generowany do `src/generated/prisma`, adapter `pg`). Postgres lokalnie bez Dockera:
+
+  ```bash
+  npm run db:start     # klaster w .local-db/, zapisuje DATABASE_URL do .env.local (zostaw uruchomione;
+                       # na Windowsie zatrzymaj go przed `npm ci`, bo blokuje esbuild.exe)
+  npm run db:migrate   # prisma migrate dev
+  npm run db:seed      # dane demo z makiet; odmawia, gdy baza nie jest lokalna
+  ```
+
+- **Dostęp do danych użytkownika wyłącznie przez `scopedDb(db(), userId)`** z `src/lib/db/scoped.ts`. Surowy `db()` tylko w zadaniach systemowych (cron, logowanie) i testach. Zagnieżdżone zapisy relacji są blokowane: rekordy podrzędne twórz osobnym wywołaniem. Nowy model w schemacie wymaga reguły w `policies` (test to wymusza).
+- Pola wrażliwe (`*Enc`) szyfruj przez `src/lib/crypto/fields.ts`.
+- Testy z bazą: pliki `*.db.test.ts`. Vitest sam podnosi tymczasowy Postgres (albo używa `TEST_DATABASE_URL` w CI) i stosuje migracje; `resetDb()` z `tests/db.ts` czyści tabele. Nigdy nie wskazuj w testach bazy z `.env.local` ani produkcyjnej.
 
 ## Gałęzie
 
