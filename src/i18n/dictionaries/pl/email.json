@@ -1,0 +1,18 @@
+{
+  "verifySubject": "Potwierdź adres e-mail w Neto",
+  "verifyBody": "Kliknij, aby potwierdzić adres e-mail:\n{link}\n\nLink jest ważny 24 godziny. Jeśli nie zakładasz konta w Neto, zignoruj tę wiadomość.",
+  "resetSubject": "Ustaw nowe hasło w Neto",
+  "resetBody": "Ktoś poprosił o zmianę hasła do Twojego konta Neto. Aby ustawić nowe hasło, otwórz:\n{link}\n\nLink jest ważny godzinę i działa raz. Jeśli to nie Ty, zignoruj tę wiadomość; hasło się nie zmieni.",
+  "newDeviceSubject": "Nowe logowanie do Neto",
+  "newDeviceBody": "Zalogowano się do Twojego konta Neto z nowego urządzenia: {device} (sieć {ip}).\n\nJeśli to nie Ty, zmień hasło i wyloguj wszystkie urządzenia w Ustawienia → Bezpieczeństwo.",
+  "passwordChangedSubject": "Hasło do Neto zostało zmienione",
+  "passwordChangedBody": "Hasło do Twojego konta Neto zostało zmienione, a inne urządzenia wylogowane.\n\nJeśli to nie Ty, od razu zresetuj hasło na stronie logowania.",
+  "totpEnabledSubject": "Weryfikacja dwuetapowa włączona",
+  "totpEnabledBody": "Na Twoim koncie Neto włączono weryfikację dwuetapową. Zachowaj kody zapasowe w bezpiecznym miejscu.",
+  "totpDisabledSubject": "Weryfikacja dwuetapowa wyłączona",
+  "totpDisabledBody": "Na Twoim koncie Neto wyłączono weryfikację dwuetapową. Jeśli to nie Ty, zmień hasło i włącz ją ponownie.",
+  "deletionRequestedSubject": "Twoje konto Neto zostanie usunięte",
+  "deletionRequestedBody": "Zgłoszono usunięcie Twojego konta Neto. Dane zostaną trwale usunięte {date}.\n\nAby anulować, po prostu zaloguj się przed tą datą.",
+  "deletionCancelledSubject": "Usunięcie konta Neto anulowane",
+  "deletionCancelledBody": "Zalogowano się na Twoje konto Neto, więc zgłoszone usunięcie zostało anulowane. Twoje dane zostają."
+}

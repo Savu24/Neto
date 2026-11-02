@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Własne:
     "docs/mockups/**",
+    ".claude/**",
     "mobile/ios/**",
     "src/generated/**",
   ]),

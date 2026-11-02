@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import Link from "next/link";
 import { PageHeader } from "@/components/page";
 import { getLocale, getT } from "@/i18n/server";
+import { requireUser } from "@/lib/auth/session";
 import { THEME_COOKIE, parseTheme, themes } from "@/lib/theme";
+import { logoutAction } from "../../(auth)/actions";
 import { setPreference } from "./actions";
 
 export const metadata: Metadata = { title: "Ustawienia" };
@@ -10,12 +13,28 @@ export const metadata: Metadata = { title: "Ustawienia" };
 const themeLabel = { system: "themeSystem", light: "themeLight", dark: "themeDark" } as const;
 
 export default async function SettingsPage() {
+  const { user } = await requireUser();
   const [t, locale, store] = await Promise.all([getT("settings"), getLocale(), cookies()]);
   const theme = parseTheme(store.get(THEME_COOKIE)?.value);
 
   return (
     <>
-      <PageHeader title={t("title")} />
+      <PageHeader title={t("title")} meta={user.email} />
+      <section className="py-4.5">
+        <ul className="rounded-xl border border-line bg-surface px-3.5">
+          <li className="border-b border-line py-3">
+            <Link href="/settings/security" className="flex justify-between">
+              <span>{t("security")}</span>
+              <span className="text-sm text-ink-2">
+                {user.totpEnabledAt ? t("twoFactorOn") : t("twoFactorOff")}
+              </span>
+            </Link>
+          </li>
+          <li className="py-3">
+            <Link href="/settings/data">{t("data")}</Link>
+          </li>
+        </ul>
+      </section>
       <section className="py-4.5">
         <h2 className="mb-1 text-sm font-semibold text-ink-2">{t("appearance")}</h2>
         <ul className="rounded-xl border border-line bg-surface px-3.5">
@@ -46,6 +65,14 @@ export default async function SettingsPage() {
           </li>
         </ul>
       </section>
+      <form action={logoutAction} className="py-4.5">
+        <button
+          type="submit"
+          className="h-11 rounded-[10px] border border-line px-4 font-semibold text-brand"
+        >
+          {t("signOut")}
+        </button>
+      </form>
     </>
   );
 }

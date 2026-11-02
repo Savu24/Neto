@@ -1,0 +1,18 @@
+{
+  "verifySubject": "Confirm your email for Neto",
+  "verifyBody": "Click to confirm your email address:\n{link}\n\nThe link is valid for 24 hours. If you did not create an account, ignore this message.",
+  "resetSubject": "Set a new Neto password",
+  "resetBody": "Someone asked to change the password for your Neto account. To set a new password, open:\n{link}\n\nThe link is valid for one hour and works once. If it was not you, ignore this message; your password will not change.",
+  "newDeviceSubject": "New sign-in to Neto",
+  "newDeviceBody": "Your Neto account was signed in from a new device: {device} (network {ip}).\n\nIf this was not you, change your password and sign out all devices in Settings → Security.",
+  "passwordChangedSubject": "Your Neto password was changed",
+  "passwordChangedBody": "The password for your Neto account was changed and other devices were signed out.\n\nIf this was not you, reset your password on the sign-in page right away.",
+  "totpEnabledSubject": "Two-step verification enabled",
+  "totpEnabledBody": "Two-step verification is now on for your Neto account. Keep your backup codes somewhere safe.",
+  "totpDisabledSubject": "Two-step verification disabled",
+  "totpDisabledBody": "Two-step verification was turned off for your Neto account. If this was not you, change your password and turn it back on.",
+  "deletionRequestedSubject": "Your Neto account will be deleted",
+  "deletionRequestedBody": "Deletion of your Neto account was requested. Your data will be permanently deleted on {date}.\n\nTo cancel, just sign in before that date.",
+  "deletionCancelledSubject": "Neto account deletion cancelled",
+  "deletionCancelledBody": "You signed in to your Neto account, so the requested deletion was cancelled. Your data stays."
+}

@@ -9,3 +9,4 @@ docs/SPEC.md
 mobile/ios
 src/generated
 .local-db
+.claude

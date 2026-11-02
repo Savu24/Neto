@@ -8,9 +8,13 @@ const channel = process.env.PW_CHANNEL || undefined;
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
+  // Jeden serwer next start i jedna baza: więcej workerów tylko kolejkuje żądania (argon2id jest kosztowny celowo).
+  workers: 2,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? "github" : "list",
+  // Rejestracja i logowanie (argon2id) przy kilku równoległych testach potrafią trwać kilka sekund.
+  expect: { timeout: 15_000 },
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: "retain-on-failure",
@@ -25,10 +29,10 @@ export default defineConfig({
     },
   ],
   webServer: {
-    // Testy na zbudowanej aplikacji (najpierw `next build`); baza tylko lokalna/testowa.
-    command: `npx next start -p ${PORT}`,
+    // Testy na zbudowanej aplikacji (najpierw `next build`) z tymczasową bazą (scripts/e2e-server.ts).
+    command: `npx tsx scripts/e2e-server.ts`,
     url: `http://localhost:${PORT}/api/health`,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });

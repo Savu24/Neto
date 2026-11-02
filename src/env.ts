@@ -26,6 +26,8 @@ export const serverEnvSchema = z.object({
   AUTH_GOOGLE_SECRET: optional,
   EMAIL_PROVIDER_KEY: optional,
   EMAIL_FROM: optional,
+  /** Tylko lokalnie i w testach e2e: bez dostawcy e-maile zapisują się do plików w tym katalogu. */
+  MAIL_OUTBOX_DIR: optional,
   PRICING_PROVIDER: optional,
   PRICING_API_KEY: optional,
   FCM_SERVICE_ACCOUNT: optional,

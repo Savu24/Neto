@@ -90,6 +90,7 @@ export const policies: Record<string, Policy> = {
   PriceSnapshot: { kind: "global" },
   FxRate: { kind: "global" },
   VerificationToken: { kind: "global" },
+  RateLimit: { kind: "global" },
 };
 
 export class ScopeError extends Error {

@@ -28,7 +28,9 @@ import enLegal from "./dictionaries/en/legal.json";
 import plErrors from "./dictionaries/pl/errors.json";
 import enErrors from "./dictionaries/en/errors.json";
 import plMobile from "./dictionaries/pl/mobile.json";
+import plEmail from "./dictionaries/pl/email.json";
 import enMobile from "./dictionaries/en/mobile.json";
+import enEmail from "./dictionaries/en/email.json";
 
 export const pl = {
   common: plCommon,
@@ -46,6 +48,7 @@ export const pl = {
   legal: plLegal,
   errors: plErrors,
   mobile: plMobile,
+  email: plEmail,
 };
 
 type Shape<T> = { [K in keyof T]: Record<keyof T[K], string> };
@@ -67,4 +70,5 @@ export const en = {
   legal: enLegal,
   errors: enErrors,
   mobile: enMobile,
+  email: enEmail,
 } satisfies Shape<typeof pl>;

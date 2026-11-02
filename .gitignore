@@ -19,3 +19,4 @@ node_modules/
 next-env.d.ts
 /.local-db/
 /src/generated/
+/.claude/worktrees/

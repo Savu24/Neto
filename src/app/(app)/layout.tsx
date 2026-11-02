@@ -1,8 +1,12 @@
 import { AppNav } from "@/components/app-nav";
 import { I18nProvider } from "@/i18n/client";
 import { getLocale, pickMessages } from "@/i18n/server";
+import { requireUser } from "@/lib/auth/session";
 
 export default async function AppLayout({ children }: LayoutProps<"/">) {
+  // Layout nie zastępuje kontroli na stronach i w akcjach (każda woła requireUser), ale nie renderuje
+  // nawigacji bez sesji. Proxy wcześniej przekierowuje żądania bez ciasteczka.
+  await requireUser();
   const locale = await getLocale();
 
   return (
