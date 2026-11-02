@@ -1,5 +1,15 @@
 {
   "terms": "Regulamin",
   "privacy": "Polityka prywatności",
-  "draftNotice": "Dokument jest w przygotowaniu i zostanie opublikowany przed uruchomieniem usługi."
+  "cookies": "Polityka cookies",
+  "risk": "Informacja o ryzyku",
+  "deleteAccount": "Jak usunąć konto",
+  "draftBadge": "Szkic do zatwierdzenia",
+  "draftNotice": "Ten dokument jest wersją roboczą i czeka na zatwierdzenie przez radcę prawnego. Treść może się zmienić przed uruchomieniem usługi, a pola w nawiasach kwadratowych zostaną uzupełnione.",
+  "translationNotice": "Wersja angielska jest tłumaczeniem. W razie rozbieżności wiążąca jest wersja polska.",
+  "metaDescription": "{title}: dokument usługi Neto.",
+  "toc": "Spis treści",
+  "otherDocs": "Dokumenty",
+  "home": "Strona główna",
+  "language": "Język dokumentu"
 }

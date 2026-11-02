@@ -12,8 +12,8 @@
 | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | --------- | ------ |
 | [regulamin.md](regulamin.md), [regulamin.en.md](regulamin.en.md)                      | Regulamin usługi (art. 8 UŚUDE), z odesłaniem do informacji o ryzyku | tak       | PL, EN |
 | [polityka-prywatnosci.md](polityka-prywatnosci.md), [.en](polityka-prywatnosci.en.md) | Polityka prywatności (RODO), kategorie danych K1–K10                 | tak       | PL, EN |
-| [ryzyko-i-brak-doradztwa.md](ryzyko-i-brak-doradztwa.md)                              | Informacja o ryzyku: wersja krótka (ekrany) i pełna                  | tak       | PL     |
-| [polityka-cookies.md](polityka-cookies.md)                                            | Polityka cookies (w 1.0 tylko niezbędne)                             | tak       | PL     |
+| [ryzyko-i-brak-doradztwa.md](ryzyko-i-brak-doradztwa.md)                              | Informacja o ryzyku: wersja krótka (ekrany) i pełna                  | tak       | PL, EN |
+| [polityka-cookies.md](polityka-cookies.md)                                            | Polityka cookies (w 1.0 tylko niezbędne)                             | tak       | PL, EN |
 | [usuniecie-konta.md](usuniecie-konta.md), [.en](usuniecie-konta.en.md)                | Publiczna strona „Jak usunąć konto” (web i iPhone, karencja 14 dni)  | tak       | PL, EN |
 | [rejestr-czynnosci-przetwarzania.md](rejestr-czynnosci-przetwarzania.md)              | Szablon rejestru czynności przetwarzania (art. 30 RODO)              | nie       | PL     |
 | [umowy-powierzenia.md](umowy-powierzenia.md)                                          | Lista umów powierzenia (DPA) i transferów do podpisania              | nie       | PL     |
@@ -108,3 +108,13 @@
 | Ekran potwierdzenia usunięcia konta      | jasna informacja o 14 dniach i o anulowaniu przez logowanie                                                                                                      | usuniecie-konta, ryzyka-recenzji 5.1.1(v)       |
 
 Słowniki: teksty stron prawnych są długie — Etap 10 zdecyduje, czy trzymać je w zakresie `legal` (`src/i18n/dictionaries/{pl,en}/legal.json`), czy jako pliki MDX/Markdown renderowane na serwerze. Ta sesja nie zmienia słowników.
+
+## Jak dokumenty trafiają na strony (Etap 10)
+
+Decyzja: treść zostaje w plikach Markdown w tym katalogu i jest renderowana na serwerze (`src/lib/legal/documents.ts`, parser `src/lib/markdown/`), a nie w słowniku `legal`. Słownik ma tylko tytuły i teksty interfejsu.
+
+- Na stronie widać tylko część publiczną: między pierwszą a drugą linią `---`. Nagłówek z polami do uzupełnienia i uwagi dla radcy zostają w repozytorium. Informacja o ryzyku: tylko część B.
+- Adresy: `/legal/terms`, `/legal/privacy`, `/legal/cookies`, `/legal/risk` oraz stały `/delete-account` (`/legal/delete-account` przekierowuje tam kodem 308). Wersja językowa: `?lang=pl` lub `?lang=en`, inaczej język przeglądarki lub ustawień.
+- Etap 10 dodał tłumaczenia `polityka-cookies.en.md` i `ryzyko-i-brak-doradztwa.en.md` (szkice, do zatwierdzenia jak reszta).
+- Dopóki `LEGAL_DRAFT = true` w `src/lib/legal/documents.ts`: oznaczenie „Szkic do zatwierdzenia”, `noindex` i brak w sitemapie. Po akceptacji radcy wystarczy zmienić tę stałą.
+- Linki Markdown w dokumentach mogą prowadzić tylko do `https:`, `mailto:`, ścieżek zaczynających się od `/` i kotwic; inne zostają zwykłym tekstem. HTML w dokumentach jest pokazywany jako tekst.
