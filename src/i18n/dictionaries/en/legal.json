@@ -1,5 +1,15 @@
 {
-  "terms": "Terms",
+  "terms": "Terms of Service",
   "privacy": "Privacy policy",
-  "draftNotice": "This document is being prepared and will be published before the service launches."
+  "cookies": "Cookie policy",
+  "risk": "Risk notice",
+  "deleteAccount": "How to delete your account",
+  "draftBadge": "Draft awaiting approval",
+  "draftNotice": "This document is a working draft awaiting approval by legal counsel. Its content may change before the service launches, and the fields in square brackets will be filled in.",
+  "translationNotice": "The English version is a translation. In case of discrepancy the Polish version prevails.",
+  "metaDescription": "{title}: a Neto service document.",
+  "toc": "Contents",
+  "otherDocs": "Documents",
+  "home": "Home",
+  "language": "Document language"
 }
