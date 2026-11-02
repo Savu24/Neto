@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neto — Pulpit (makieta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mockups.css">
+</head>
+<body data-page="pulpit">
+<div class="app">
+  <nav class="sidebar" aria-label="Nawigacja główna"></nav>
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Pulpit</h1>
+        <p class="meta">Wycena z 2 listopada 2026, 22:30</p>
+      </div>
+      <div class="actions">
+        <button class="icon-btn" data-toggle-private aria-pressed="false" aria-label="Ukryj kwoty"><span data-icon="oko"></span></button>
+        <button class="icon-btn" aria-label="Powiadomienia"><span data-icon="dzwonek"></span></button>
+      </div>
+    </header>
+
+    <div class="dash-grid">
+      <div class="col-main">
+        <section class="hero" aria-labelledby="nw-label">
+          <p class="label" id="nw-label">Wartość netto</p>
+          <span class="hero-amt" data-amt>487 320,15 <small>zł</small></span>
+          <div class="changes">
+            <span>Dzień <b class="up" data-amt>+1 204 zł</b> <span class="up">+0,25%</span></span>
+            <span>Miesiąc <b class="up" data-amt>+8 911 zł</b> <span class="up">+1,86%</span></span>
+            <span>Rok <b class="up" data-amt>+61 340 zł</b> <span class="up">+14,40%</span></span>
+          </div>
+
+          <div class="balance" aria-label="Bilans: aktywa i zobowiązania">
+            <div class="legend"><span>Aktywa</span><span data-amt>1 042 870 zł</span></div>
+            <div class="bar assets" style="width:100%"></div>
+            <div class="axis"></div>
+            <div class="bar liab" style="width:53.3%"></div>
+            <div class="legend"><span>Zobowiązania</span><span class="down" data-amt>−555 550 zł</span></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Historia</h2>
+            <div class="seg" role="group" aria-label="Zakres">
+              <button>1M</button><button>6M</button><button aria-pressed="true">1R</button><button>5L</button><button>Wszystko</button>
+            </div>
+          </div>
+          <div class="chart-wrap" id="chart"></div>
+          <div class="chart-legend">
+            <span><i style="background:var(--brand-soft)"></i>Aktywa</span>
+            <span><i style="background:repeating-linear-gradient(135deg,var(--down) 0 2px,var(--down-soft) 2px 4px)"></i>Zobowiązania</span>
+            <span><i style="background:var(--brand);height:3px;vertical-align:3px"></i>Wartość netto</span>
+          </div>
+        </section>
+
+        <section class="section only-desktop">
+          <div class="section-head"><h2>Największe pozycje</h2><a href="majatek.html">Cały majątek</a></div>
+          <table class="positions only-desktop">
+            <thead><tr><th>Pozycja</th><th>Konto</th><th class="num">Wartość</th><th class="num">Wynik</th><th class="num">Udział</th></tr></thead>
+            <tbody>
+              <tr><td>Mieszkanie, Gdańsk <span class="tag warn">wycena z 12.06.2026</span></td><td class="muted">Nieruchomości</td><td class="num" data-amt>620 000,00 zł</td><td class="num muted">—</td><td class="num">59,5%</td></tr>
+              <tr><td><a href="pozycja.html">Vanguard FTSE All-World (Acc)</a></td><td class="muted">IKE</td><td class="num" data-amt>148 208,97 zł</td><td class="num up">+18,4%</td><td class="num">14,2%</td></tr>
+              <tr><td>Obligacje EDO (5 serii)</td><td class="muted">Obligacje skarbowe</td><td class="num" data-amt>96 400,12 zł</td><td class="num up">+4,8%</td><td class="num">9,2%</td></tr>
+              <tr><td>Konto oszczędnościowe</td><td class="muted">Bank</td><td class="num" data-amt>52 300,00 zł</td><td class="num muted">—</td><td class="num">5,0%</td></tr>
+              <tr><td>Bitcoin</td><td class="muted">Krypto</td><td class="num" data-amt>28 000,40 zł</td><td class="num down">−4,2%</td><td class="num">2,7%</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+
+      <div class="col-side">
+        <section class="section">
+          <div class="notice" role="status">
+            <span data-icon="uwaga"></span>
+            <span>2 pozycje mają nieaktualną wycenę</span>
+            <a href="majatek.html">Pokaż</a>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>Cel główny</h2><a href="cele.html">Wszystkie cele</a></div>
+          <div class="goal" style="padding:0;border:0">
+            <div class="goal-top"><span class="name">Poduszka na 6 miesięcy</span><b>87%</b></div>
+            <div class="progress"><span style="width:87%"></span></div>
+            <p class="meta"><span data-amt>52 300 zł z 60 000 zł</span>. W dobrym tempie, termin: marzec 2027.</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Alokacja</h2>
+            <div class="seg" role="group" aria-label="Grupuj według">
+              <button aria-pressed="true">Klasa</button><button>Waluta</button><button>Konto</button>
+            </div>
+          </div>
+          <div class="alloc-bar" aria-hidden="true">
+            <span style="width:59.5%;background:#1d3e63"></span>
+            <span style="width:20.5%;background:#4a7aaa"></span>
+            <span style="width:9.2%;background:#5b8f7b"></span>
+            <span style="width:8.1%;background:#9db8d3"></span>
+            <span style="width:2.7%;background:#c9a24a"></span>
+          </div>
+          <ul class="rows">
+            <li><span class="name"><i class="tag" style="background:#1d3e63;width:10px;height:10px;padding:0;margin-right:8px"></i>Nieruchomości</span><span class="val">59,5%</span></li>
+            <li><span class="name"><i class="tag" style="background:#4a7aaa;width:10px;height:10px;padding:0;margin-right:8px"></i>Akcje i ETF</span><span class="val">20,5%</span></li>
+            <li><span class="name"><i class="tag" style="background:#5b8f7b;width:10px;height:10px;padding:0;margin-right:8px"></i>Obligacje skarbowe</span><span class="val">9,2%</span></li>
+            <li><span class="name"><i class="tag" style="background:#9db8d3;width:10px;height:10px;padding:0;margin-right:8px"></i>Gotówka i lokaty</span><span class="val">8,1%</span></li>
+            <li><span class="name"><i class="tag" style="background:#c9a24a;width:10px;height:10px;padding:0;margin-right:8px"></i>Krypto</span><span class="val">2,7%</span></li>
+          </ul>
+        </section>
+
+        <section class="section only-mobile">
+          <div class="section-head"><h2>Największe pozycje</h2><a href="majatek.html">Cały majątek</a></div>
+          <ul class="rows">
+            <li><span><span class="name">Mieszkanie, Gdańsk</span><br><span class="tag warn">wycena z 12.06.2026</span></span><span><span class="val" data-amt>620 000 zł</span><br><span class="chg muted">59,5%</span></span></li>
+            <li><a class="row-link" href="pozycja.html"><span><span class="name">Vanguard FTSE All-World</span><br><span class="sub">IKE</span></span><span><span class="val" data-amt>148 209 zł</span><br><span class="chg up">+18,4%</span></span></a></li>
+            <li><span><span class="name">Obligacje EDO</span><br><span class="sub">5 serii</span></span><span><span class="val" data-amt>96 400 zł</span><br><span class="chg up">+4,8%</span></span></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <p class="disclaimer">Dane mają charakter informacyjny i nie stanowią porady inwestycyjnej. Wyceny mogą być opóźnione.</p>
+  </main>
+  <nav class="bottom-nav" aria-label="Nawigacja główna"></nav>
+</div>
+<script src="mockups.js"></script>
+<script>
+  drawBalanceChart(document.getElementById("chart"), [
+    { m: "lis 25", a: 1006, l: 580 }, { m: "gru", a: 1001, l: 578 }, { m: "sty", a: 1012, l: 576 },
+    { m: "lut 26", a: 1009, l: 574 }, { m: "mar", a: 1018, l: 572 }, { m: "kwi", a: 1015, l: 570 },
+    { m: "maj 26", a: 1024, l: 568 }, { m: "cze", a: 1019, l: 566 }, { m: "lip", a: 1027, l: 564 },
+    { m: "sie 26", a: 1031, l: 562 }, { m: "wrz", a: 1028, l: 560 }, { m: "paź", a: 1036, l: 557 },
+    { m: "lis 26", a: 1042.9, l: 555.6 },
+  ]);
+</script>
+</body>
+</html>

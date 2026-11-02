@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neto — Majątek (makieta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mockups.css">
+</head>
+<body data-page="majatek">
+<div class="app">
+  <nav class="sidebar" aria-label="Nawigacja główna"></nav>
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Majątek</h1>
+        <p class="meta">11 kont, wycena z 2 listopada 2026</p>
+      </div>
+      <div class="actions">
+        <button class="icon-btn" data-toggle-private aria-pressed="false" aria-label="Ukryj kwoty"><span data-icon="oko"></span></button>
+      </div>
+    </header>
+
+    <div class="totals">
+      <div><span class="meta">Aktywa</span><b data-amt>1 042 870 zł</b></div>
+      <div><span class="meta">Zobowiązania</span><b class="down" data-amt>−555 550 zł</b></div>
+      <div><span class="meta">Netto</span><b data-amt>487 320 zł</b></div>
+    </div>
+
+    <div class="section-head">
+      <div class="seg" role="group" aria-label="Grupuj według">
+        <button aria-pressed="true">Konta</button><button>Klasy aktywów</button>
+      </div>
+      <a href="#" class="meta">Pokaż zarchiwizowane (2)</a>
+    </div>
+
+    <div class="assets-layout">
+      <div>
+        <section class="group">
+          <div class="group-head"><h2>Gotówka i konta</h2><span class="val" data-amt>84 170,00 zł</span></div>
+          <ul class="rows">
+            <li><span><span class="name">Konto osobiste</span><br><span class="sub">Rachunek, PLN</span></span><span class="val" data-amt>18 469,98 zł</span></li>
+            <li><span><span class="name">Konto oszczędnościowe</span><br><span class="sub">Oszczędnościowe, PLN</span></span><span class="val" data-amt>52 300,00 zł</span></li>
+            <li><span><span class="name">Lokata 6 mies., 5,1%</span><br><span class="sub">Do 3.12.2026, z naliczonymi odsetkami</span></span><span class="val" data-amt>10 212,18 zł</span></li>
+            <li><span><span class="name">Konto walutowe</span><br><span class="sub" data-amt>800,00 USD, kurs NBP 3,9848</span></span><span class="val" data-amt>3 187,84 zł</span></li>
+          </ul>
+        </section>
+
+        <section class="group">
+          <div class="group-head"><h2>Inwestycje</h2><span class="val" data-amt>214 300,00 zł</span></div>
+          <ul class="rows">
+            <li>
+              <span><span class="name">IKE</span> <span class="tag">IKE</span><br><span class="sub">Maklerskie, 2 pozycje</span></span>
+              <span><span class="val" data-amt>172 100,00 zł</span><br><span class="chg up">+16,9%</span></span>
+              <ul class="nested">
+                <li><a href="pozycja.html">Vanguard FTSE All-World (Acc)</a><span data-amt>148 208,97 zł</span></li>
+                <li><span>Beta ETF WIG20TR</span><span data-amt>23 891,03 zł</span></li>
+              </ul>
+            </li>
+            <li>
+              <span><span class="name">Konto maklerskie</span><br><span class="sub">Maklerskie, 2 pozycje</span></span>
+              <span><span class="val" data-amt>42 200,00 zł</span><br><span class="chg down">−2,3%</span></span>
+              <ul class="nested">
+                <li><span>CD Projekt</span><span data-amt>18 400,00 zł</span></li>
+                <li><span>Orlen</span><span data-amt>23 800,00 zł</span></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="group">
+          <div class="group-head"><h2>Obligacje skarbowe i krypto</h2><span class="val" data-amt>124 400,52 zł</span></div>
+          <ul class="rows">
+            <li><span><span class="name">Obligacje EDO</span><br><span class="sub">5 serii, 920 szt.</span></span><span><span class="val" data-amt>96 400,12 zł</span><br><span class="chg up">+4,8%</span></span></li>
+            <li><span><span class="name">Bitcoin</span><br><span class="sub">Portfel krypto, 0,0712 BTC</span></span><span><span class="val" data-amt>28 000,40 zł</span><br><span class="chg down">−4,2%</span></span></li>
+          </ul>
+        </section>
+
+        <section class="group">
+          <div class="group-head"><h2>Nieruchomości i inne</h2><span class="val" data-amt>620 000,00 zł</span></div>
+          <ul class="rows">
+            <li><span><span class="name">Mieszkanie, Gdańsk</span><br><span class="tag warn">Wycena z 12.06.2026, zaktualizuj</span></span><span class="val" data-amt>620 000,00 zł</span></li>
+          </ul>
+        </section>
+
+        <section class="group">
+          <div class="group-head"><h2>Zobowiązania</h2><span class="val liab-val" data-amt>−555 550,25 zł</span></div>
+          <ul class="rows">
+            <li><span><span class="name">Kredyt hipoteczny</span><br><span class="sub">Saldo z 01.11.2026, rata 3 412 zł</span></span><span class="val liab-val" data-amt>−548 320,25 zł</span></li>
+            <li><span><span class="name">Karta kredytowa</span><br><span class="tag warn">Saldo z 20.09.2026, zaktualizuj</span></span><span class="val liab-val" data-amt>−7 230,00 zł</span></li>
+          </ul>
+        </section>
+      </div>
+
+      <aside>
+        <section class="section only-desktop">
+          <h2 style="margin-bottom:12px">Dodaj</h2>
+          <div style="display:grid;gap:8px">
+            <a class="btn" href="#"><span data-icon="dodaj"></span>Transakcję</a>
+            <a class="btn secondary" href="#">Konto lub aktywo</a>
+            <a class="btn secondary" href="#">Import z pliku CSV</a>
+          </div>
+        </section>
+        <section class="section">
+          <h2 style="margin-bottom:8px">Do aktualizacji</h2>
+          <ul class="rows">
+            <li><span><span class="name">Mieszkanie, Gdańsk</span><br><span class="sub">ostatnio 143 dni temu</span></span><a href="#">Zaktualizuj</a></li>
+            <li><span><span class="name">Karta kredytowa</span><br><span class="sub">ostatnio 43 dni temu</span></span><a href="#">Zaktualizuj</a></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <p class="disclaimer">Dane mają charakter informacyjny i nie stanowią porady inwestycyjnej. Wyceny mogą być opóźnione.</p>
+  </main>
+  <nav class="bottom-nav" aria-label="Nawigacja główna"></nav>
+</div>
+<script src="mockups.js"></script>
+</body>
+</html>

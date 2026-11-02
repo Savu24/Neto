@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neto — Szczegóły pozycji (makieta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mockups.css">
+</head>
+<body data-page="majatek">
+<div class="app">
+  <nav class="sidebar" aria-label="Nawigacja główna"></nav>
+  <main class="main">
+    <header class="topbar">
+      <a class="icon-btn" href="majatek.html" aria-label="Wróć do listy"><span data-icon="wstecz"></span></a>
+      <div class="actions">
+        <button class="icon-btn" data-toggle-private aria-pressed="false" aria-label="Ukryj kwoty"><span data-icon="oko"></span></button>
+      </div>
+    </header>
+
+    <div class="detail-layout">
+      <div>
+        <section class="hero">
+          <h1>Vanguard FTSE All-World UCITS ETF (Acc)</h1>
+          <p class="meta">VWCE, Xetra, EUR. Konto IKE <span class="tag">IKE</span></p>
+          <span class="hero-amt" data-amt style="margin-top:14px">148 208,97 <small>zł</small></span>
+          <div class="changes">
+            <span>Wynik <b class="up" data-amt>+23 028,57 zł</b> <span class="up">+18,4%</span></span>
+            <span>Udział w majątku 14,2%</span>
+          </div>
+          <p class="meta" style="margin-top:8px">Cena 132,64 EUR z 2.11.2026 (zamknięcie). Kurs NBP EUR 4,2648 z 2.11.2026.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2>Wartość i koszt</h2>
+            <div class="seg" role="group" aria-label="Zakres"><button>6M</button><button aria-pressed="true">1R</button><button>Wszystko</button></div>
+          </div>
+          <div id="chart"></div>
+          <div class="chart-legend">
+            <span><i style="background:var(--brand);height:3px;vertical-align:3px"></i>Wartość</span>
+            <span><i style="background:repeating-linear-gradient(90deg,var(--ink-3) 0 4px,transparent 4px 7px);height:2px;vertical-align:3px"></i>Koszt nabycia</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>Transakcje</h2><a href="#">Wszystkie (31)</a></div>
+          <ul class="rows">
+            <li><span><span class="name">Kupno, 6 szt. po 128,10 EUR</span><br><span class="sub">3.10.2026, kurs 4,2701</span></span><span class="val" data-amt>−3 282,04 zł</span></li>
+            <li><span><span class="name">Kupno, 6 szt. po 126,02 EUR</span><br><span class="sub">4.09.2026, kurs 4,2655</span></span><span class="val" data-amt>−3 225,28 zł</span></li>
+            <li><span><span class="name">Kupno, 7 szt. po 124,88 EUR</span><br><span class="sub">5.08.2026, kurs 4,2810</span></span><span class="val" data-amt>−3 742,28 zł</span></li>
+          </ul>
+          <a class="btn secondary" href="#" style="margin-top:12px"><span data-icon="dodaj"></span>Dodaj transakcję</a>
+        </section>
+      </div>
+
+      <aside>
+        <section class="section">
+          <h2 style="margin-bottom:6px">Wynik</h2>
+          <dl class="kv">
+            <dt>Wartość</dt><dd data-amt>148 208,97 zł</dd>
+            <dt>Koszt nabycia (FIFO)</dt><dd data-amt>125 180,40 zł</dd>
+            <dt>Wynik całkowity</dt><dd class="up" data-amt>+23 028,57 zł</dd>
+            <dt class="indent">w tym zmiana ceny</dt><dd class="up" data-amt>+26 832,76 zł</dd>
+            <dt class="indent">w tym efekt walutowy</dt><dd class="down" data-amt>−3 804,19 zł</dd>
+          </dl>
+          <p class="meta" style="margin-top:8px">Efekt walutowy to różnica między kursem EUR dziś a kursami z dni zakupu.</p>
+        </section>
+        <section class="section">
+          <h2 style="margin-bottom:6px">Szczegóły</h2>
+          <dl class="kv">
+            <dt>Liczba jednostek</dt><dd>262</dd>
+            <dt>Średni koszt</dt><dd data-amt>108,63 EUR</dd>
+            <dt>Koszt w EUR</dt><dd data-amt>28 460,00 EUR</dd>
+            <dt>Wartość w EUR</dt><dd data-amt>34 751,68 EUR</dd>
+            <dt>ISIN</dt><dd>IE00BK5BQT80</dd>
+            <dt>Źródło ceny</dt><dd>dostawca danych</dd>
+          </dl>
+        </section>
+      </aside>
+    </div>
+
+    <p class="disclaimer">Dane mają charakter informacyjny i nie stanowią porady inwestycyjnej. Wyceny mogą być opóźnione.</p>
+  </main>
+  <nav class="bottom-nav" aria-label="Nawigacja główna"></nav>
+</div>
+<script src="mockups.js"></script>
+<script>
+  drawValueChart(document.getElementById("chart"), [
+    { m: "lis 25", v: 104.2, c: 95.4 }, { m: "gru", v: 107.9, c: 98.6 }, { m: "sty", v: 111.0, c: 101.9 },
+    { m: "lut 26", v: 109.4, c: 105.1 }, { m: "mar", v: 115.8, c: 108.3 }, { m: "kwi", v: 113.1, c: 111.6 },
+    { m: "maj 26", v: 121.7, c: 114.8 }, { m: "cze", v: 124.0, c: 117.0 }, { m: "lip", v: 130.2, c: 118.7 },
+    { m: "sie 26", v: 134.9, c: 120.4 }, { m: "wrz", v: 138.1, c: 121.9 }, { m: "paź", v: 144.6, c: 125.2 },
+    { m: "lis 26", v: 148.2, c: 125.2 },
+  ]);
+</script>
+</body>
+</html>

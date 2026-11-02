@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neto — Cele (makieta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mockups.css">
+</head>
+<body data-page="cele">
+<div class="app">
+  <nav class="sidebar" aria-label="Nawigacja główna"></nav>
+  <main class="main">
+    <header class="topbar">
+      <h1>Cele</h1>
+      <a class="btn secondary" href="#"><span data-icon="dodaj"></span>Nowy cel</a>
+    </header>
+
+    <div class="goals-layout">
+      <div>
+        <div class="goal main">
+          <div class="goal-top"><span class="name"><b>Poduszka na 6 miesięcy</b> <span class="tag">cel główny</span></span><b>87%</b></div>
+          <div class="progress"><span style="width:87%"></span></div>
+          <p class="muted"><span data-amt>52 300 zł z 60 000 zł</span>. Termin: marzec 2027.</p>
+          <p class="meta">Potrzeba <span data-amt>1 540 zł</span> miesięcznie. Ostatnie 3 miesiące: średnio <span data-amt>1 910 zł</span>, w dobrym tempie.</p>
+          <p class="meta">Konta: Konto oszczędnościowe</p>
+        </div>
+
+        <section class="section" style="border-top:0">
+          <div class="goal">
+            <div class="goal-top"><span class="name">Wyjazd do Japonii</span><b>41%</b></div>
+            <div class="progress"><span style="width:41%"></span></div>
+            <p class="meta"><span data-amt>9 800 zł z 24 000 zł</span>. Termin: wrzesień 2027. Poniżej tempa o <span data-amt>350 zł</span>/mies.</p>
+          </div>
+          <div class="goal">
+            <div class="goal-top"><span class="name">Wartość netto 600 tys. zł</span><b>81%</b></div>
+            <div class="progress"><span style="width:81%"></span></div>
+            <p class="meta"><span data-amt>487 320 zł z 600 000 zł</span>. Bez terminu. Ostatnie 12 miesięcy: średnio <span data-amt>+5 112 zł</span>/mies.</p>
+          </div>
+        </section>
+        <p class="meta">Potrzebna wpłata liczona jest bez zakładanej stopy zwrotu.</p>
+      </div>
+
+      <section class="section" aria-labelledby="ret">
+        <div class="section-head"><h2 id="ret">Kiedy mogę przejść na emeryturę</h2><a href="#">Zmień założenia</a></div>
+        <p class="muted">Kwoty w dzisiejszych złotych. Potrzebny kapitał: <b data-amt id="need"></b>, czyli wydatki ponad emeryturę z ZUS przy wypłacie 4% rocznie.</p>
+
+        <div class="scen" id="scen"></div>
+        <div id="chart"></div>
+        <div class="chart-legend">
+          <span><i style="background:var(--ink-3);height:3px;vertical-align:3px"></i>Ostrożny 1%</span>
+          <span><i style="background:var(--brand);height:3px;vertical-align:3px"></i>Bazowy 3%</span>
+          <span><i style="background:var(--up);height:3px;vertical-align:3px"></i>Optymistyczny 5%</span>
+          <span><i style="background:repeating-linear-gradient(90deg,var(--down) 0 4px,transparent 4px 7px);height:2px;vertical-align:3px"></i>Potrzebny kapitał</span>
+        </div>
+
+        <h3 style="margin:22px 0 6px">Założenia</h3>
+        <div class="assume">
+          <span>Wiek obecny</span><span>34</span>
+          <span>Planowany wiek emerytalny</span><span>60</span>
+          <span>Majątek startowy (bez mieszkania)</span><span data-amt>422 870 zł</span>
+          <span>Wpłata miesięczna</span><span data-amt>3 500 zł</span>
+          <span>Wydatki na emeryturze</span><span data-amt>9 000 zł/mies.</span>
+          <span>Spodziewana emerytura z ZUS</span><span data-amt>2 500 zł/mies.</span>
+          <span>Stopa wypłaty</span><span>4% rocznie</span>
+          <span>Realna stopa zwrotu: ostrożna, bazowa, optymistyczna</span><span>1%, 3%, 5%</span>
+        </div>
+        <p class="disclaimer" style="margin-top:16px">To symulacja, nie gwarancja wyniku. Wyniki zależą od założeń, które możesz zmienić, i nie stanowią porady inwestycyjnej.</p>
+      </section>
+    </div>
+
+    <p class="disclaimer">Dane mają charakter informacyjny i nie stanowią porady inwestycyjnej. Wyceny mogą być opóźnione.</p>
+  </main>
+  <nav class="bottom-nav" aria-label="Nawigacja główna"></nav>
+</div>
+<script src="mockups.js"></script>
+<script>
+  const o = { age: 34, retireAge: 60, pv: 422870, pmt: 3500, need: (12 * (9000 - 2500)) / 0.04, returns: { low: 0.01, base: 0.03, high: 0.05 } };
+  const res = retirement(o);
+  const zl = (v) => new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 }).format(v) + " zł";
+  const mln = (v) => (v / 1e6).toLocaleString("pl-PL", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " mln zł";
+  document.getElementById("need").textContent = zl(o.need);
+  const names = { low: "Ostrożny, 1%", base: "Bazowy, 3%", high: "Optymistyczny, 5%" };
+  document.getElementById("scen").innerHTML = Object.entries(res).map(([k, r]) => `
+    <div><span class="k">${names[k]}</span><br>
+      <span class="v">${r.firstAge ? r.firstAge + " lat" : "po 80"}</span><br>
+      <span class="s ${r.atRetire >= o.need ? "up" : "down"}" data-amt>${mln(r.atRetire)} w wieku 60</span></div>`).join("");
+  drawRetirementChart(document.getElementById("chart"), res, o);
+</script>
+</body>
+</html>
