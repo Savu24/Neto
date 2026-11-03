@@ -477,6 +477,8 @@ Budżet miesięczny i kategorie, cykliczne płatności, wspólne konta dla dwóc
 | 02.11.2026 | Logowanie: własne sesje w bazie (wzorzec Lucia) zamiast Auth.js, Google przez arctic | Claude Code (Etap 4) |
 | 03.11.2026 | Aplikacja do użytku własnego właściciela. iPhone przez PWA z ekranu głównego zamiast Capacitora: wypadają Etap 11 (powłoka iOS, Codemagic, TestFlight) i wysyłka do App Store (Etap 12 część sklepowa, Etap 14 recenzja). Rejestracja zostaje otwarta; szkice prawne i sklepowe zostają w repo bez dalszej pracy | właściciel |
 | 03.11.2026 | Cele: tworzenie, edycja, usuwanie, cel główny, plan dziennie/tygodniowo/miesięcznie, cel „od zera” z ręczną kwotą. Nowa paleta „kobalt” zamiast szarozielonej | właściciel + Claude Code |
+| 03.11.2026 | Tylko jasny motyw (tryb ciemny usunięty, decyzja właściciela) | właściciel |
+| 03.11.2026 | Etap 7: pulpit (historia liczona na bieżąco z transakcji, alokacja, cel główny, tryb prywatny). Etap 6: nocny cron wyceny `/api/cron/valuation`, migawki, kolejka przeliczeń; na planie Vercel Hobby crony raz dziennie, więc przeliczenie po dacie wstecznej czeka do nocy. Etap 9: powiadomienia w aplikacji i e-mailem, preferencje, cron `/api/cron/notifications`; push wyłączony flagą. Kalkulator emerytury zapisuje założenia | Claude Code |
 
 ## 20. Makiety i kierunek wizualny
 

@@ -76,3 +76,10 @@ export const EyeOffIcon = (p: SVGProps<SVGSVGElement>) => (
     <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
   </Icon>
 );
+
+export const BellIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <path d="M6 9a6 6 0 1 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z" />
+    <path d="M10 20a2 2 0 0 0 4 0" />
+  </Icon>
+);

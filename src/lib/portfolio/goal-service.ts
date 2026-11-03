@@ -56,11 +56,16 @@ export async function createGoal(db: ScopedDb, userId: string, input: GoalInput)
 export async function updateGoal(db: ScopedDb, goalId: string, input: GoalInput): Promise<void> {
   const accountIds = await linkableAccountIds(db, input.accountIds);
   await scopedTransaction(db, async (tx) => {
-    const existing = await tx.goal.findUnique({ where: { id: goalId }, select: { id: true } });
+    const existing = await tx.goal.findUnique({ where: { id: goalId }, select: { targetAmount: true } });
     if (!existing) throw new GoalNotFoundError();
     if (input.isMain)
       await tx.goal.updateMany({ where: { isMain: true, id: { not: goalId } }, data: { isMain: false } });
-    await tx.goal.update({ where: { id: goalId }, data: goalData(input) });
+    // Wyższa kwota celu: cel znów jest „w drodze”, więc powiadomienie o osiągnięciu może przyjść ponownie.
+    const raised = D(input.targetAmount).gt(D(existing.targetAmount.toString()));
+    await tx.goal.update({
+      where: { id: goalId },
+      data: { ...goalData(input), ...(raised ? { achievedAt: null } : {}) },
+    });
     await tx.goalAccount.deleteMany({ where: { goalId } });
     if (accountIds.length > 0)
       await tx.goalAccount.createMany({ data: accountIds.map((accountId) => ({ goalId, accountId })) });

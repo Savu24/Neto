@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Disclaimer, EmptyState, PageHeader } from "@/components/page";
+import { BellIcon } from "@/components/icons";
 import { PrivacyToggle } from "@/components/privacy-toggle";
 import type { Locale, MessageKey } from "@/i18n/config";
 import { getLocale, getT } from "@/i18n/server";
@@ -9,6 +10,7 @@ import { db } from "@/lib/db/client";
 import { scopedDb } from "@/lib/db/scoped";
 import { formatDate, formatMoney, formatPercent } from "@/lib/format";
 import { D, sum } from "@/lib/money";
+import { unreadCount } from "@/lib/notifications/service";
 import { loadGoals } from "@/lib/portfolio/goal-service";
 import { loadPortfolio } from "@/lib/portfolio/ledger/load";
 import { loadNetWorthSeries, type SeriesPoint } from "@/lib/portfolio/ledger/net-worth-series";
@@ -75,7 +77,11 @@ export default async function DashboardPage({ searchParams }: PageProps<"/dashbo
     );
   }
 
-  const goals = await loadGoals(sdb, portfolio, today);
+  const [goals, unread, tn] = await Promise.all([
+    loadGoals(sdb, portfolio, today),
+    unreadCount(sdb),
+    getT("notifications"),
+  ]);
   const mainGoal = goals.find((g) => g.isMain) ?? goals[0] ?? null;
   const changes = netWorthChanges(series.points, today);
   const money = (v: string, signed = false) => formatMoney(v, "PLN", locale, { signed });
@@ -126,7 +132,24 @@ export default async function DashboardPage({ searchParams }: PageProps<"/dashbo
       <PageHeader
         title={t("title")}
         meta={t("meta", { date: formatDate(dateOf(today), locale, "long") })}
-        actions={<PrivacyToggle />}
+        actions={
+          <>
+            <PrivacyToggle />
+            <Link
+              href="/notifications"
+              aria-label={unread > 0 ? `${tn("title")}: ${unread}` : tn("title")}
+              title={tn("title")}
+              className="relative grid size-10 place-items-center rounded-[10px] text-ink-2 transition-colors hover:bg-surface hover:text-ink"
+            >
+              <BellIcon />
+              {unread > 0 ? (
+                <span className="absolute top-1.5 right-1.5 grid min-w-4 place-items-center rounded-full bg-down px-1 text-[10px] leading-4 font-semibold text-white">
+                  {unread > 9 ? "9+" : unread}
+                </span>
+              ) : null}
+            </Link>
+          </>
+        }
       />
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-8">
         <div className="min-w-0">

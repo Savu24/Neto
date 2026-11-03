@@ -118,3 +118,15 @@ describe("cele", () => {
     expect(await goals(a)).toEqual([]);
   });
 });
+
+describe("osiągnięcie celu", () => {
+  it("podniesienie kwoty celu kasuje znacznik osiągnięcia, inna zmiana nie", async () => {
+    const l = await user("f@example.com");
+    const id = await createGoal(l.db, l.userId, goal({ name: "A", targetAmount: "100", savedAmount: "100" }));
+    await base.goal.update({ where: { id }, data: { achievedAt: new Date() } });
+    await updateGoal(l.db, id, goal({ name: "B", targetAmount: "100", savedAmount: "100" }));
+    expect((await base.goal.findUniqueOrThrow({ where: { id } })).achievedAt).not.toBeNull();
+    await updateGoal(l.db, id, goal({ name: "B", targetAmount: "150", savedAmount: "100" }));
+    expect((await base.goal.findUniqueOrThrow({ where: { id } })).achievedAt).toBeNull();
+  });
+});
