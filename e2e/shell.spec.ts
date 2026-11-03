@@ -81,3 +81,11 @@ test.describe("strony publiczne i nagłówki", () => {
     expect(violations).toEqual([]);
   });
 });
+
+test("telefon: strona nie powiększa się (viewport i pola 16 px)", async ({ page }) => {
+  await page.goto("/login");
+  await expect(page.locator('meta[name="viewport"]')).toHaveAttribute("content", /maximum-scale=1/);
+  await expect(page.locator('meta[name="viewport"]')).toHaveAttribute("content", /user-scalable=no/);
+  const size = await page.getByLabel("E-mail").evaluate((el) => getComputedStyle(el).fontSize);
+  if ((page.viewportSize()?.width ?? 1024) < 1024) expect(size).toBe("16px");
+});

@@ -19,6 +19,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  // Bez powiększania na telefonie (decyzja właściciela 03.11.2026): ani gestem, ani przy kliknięciu w pole.
+  maximumScale: 1,
+  userScalable: false,
   // Treść pod wycięciem i paskiem domowym iPhone'a; odstępy dają zmienne env(safe-area-inset-*).
   viewportFit: "cover",
   themeColor: "#f4f6fa",

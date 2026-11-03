@@ -90,6 +90,22 @@ body {
   }
 }
 
+/*
+ * Bez powiększania na telefonie: Safari przybliża pole formularza z czcionką < 16 px, więc na wąskich
+ * ekranach pola mają 16 px; manipulation wyłącza powiększanie podwójnym stuknięciem.
+ */
+html {
+  touch-action: manipulation;
+}
+
+@media (max-width: 1023px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
 /* Tryb prywatny (HU-4.5): kwoty rozmyte, układ bez zmian. */
 [data-private] [data-amt] {
   filter: blur(7px);

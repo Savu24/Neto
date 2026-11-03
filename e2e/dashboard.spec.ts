@@ -70,14 +70,14 @@ test("szybka wpłata i wypłata z pulpitu", async ({ authedPage: page }) => {
 
   await page.goto("/dashboard");
   const quick = page.getByRole("group", { name: "Szybka wpłata lub wypłata" });
-  await quick.getByRole("button", { name: "Dodaj wpłatę" }).click();
+  await quick.getByRole("button", { name: "Wpłata", exact: true }).click();
   await quick.getByLabel("Kwota").fill("500");
   await quick.getByRole("button", { name: "Zapisz wpłatę" }).click();
   await expect(quick.getByRole("status")).toHaveText("Wpłata zapisana.");
   await expect(page).toHaveURL(/\/dashboard/);
   await expect(page.getByTestId("dashboard-net-worth")).toHaveText(/^1500,00\s*zł$/);
 
-  await quick.getByRole("button", { name: "Dodaj wypłatę" }).click();
+  await quick.getByRole("button", { name: "Wypłata", exact: true }).click();
   await quick.getByLabel("Kwota").fill("200");
   await quick.getByRole("button", { name: "Zapisz wypłatę" }).click();
   await expect(quick.getByRole("status")).toHaveText("Wypłata zapisana.");
