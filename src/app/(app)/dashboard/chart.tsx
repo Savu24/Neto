@@ -50,7 +50,7 @@ export function NetWorthChart({
       year: points.length <= 40 ? undefined : "2-digit",
       timeZone: "UTC",
     }).format(new Date(`${d}T00:00:00Z`));
-  const xTicks = [0, Math.floor((points.length - 1) / 2), points.length - 1];
+  const xTicks = [...new Set([0, Math.floor((points.length - 1) / 2), points.length - 1])];
 
   return (
     <figure>
@@ -138,27 +138,29 @@ export function NetWorthChart({
           {labels.netWorth}
         </span>
       </figcaption>
-      <table className="sr-only">
-        <caption>{labels.alt}</caption>
-        <thead>
-          <tr>
-            <th scope="col">{labels.date}</th>
-            <th scope="col">{labels.assets}</th>
-            <th scope="col">{labels.liabilities}</th>
-            <th scope="col">{labels.netWorth}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {points.map((p) => (
-            <tr key={p.date}>
-              <th scope="row">{formatDate(`${p.date}T12:00:00Z`, locale)}</th>
-              <td>{formatMoney(p.assets, "PLN", locale)}</td>
-              <td>{formatMoney(p.liabilities, "PLN", locale)}</td>
-              <td>{formatMoney(p.netWorth, "PLN", locale)}</td>
+      <div className="sr-only">
+        <table>
+          <caption>{labels.alt}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{labels.date}</th>
+              <th scope="col">{labels.assets}</th>
+              <th scope="col">{labels.liabilities}</th>
+              <th scope="col">{labels.netWorth}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {points.map((p) => (
+              <tr key={p.date}>
+                <th scope="row">{formatDate(`${p.date}T12:00:00Z`, locale)}</th>
+                <td>{formatMoney(p.assets, "PLN", locale)}</td>
+                <td>{formatMoney(p.liabilities, "PLN", locale)}</td>
+                <td>{formatMoney(p.netWorth, "PLN", locale)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </figure>
   );
 }

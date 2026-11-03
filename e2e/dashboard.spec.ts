@@ -33,6 +33,10 @@ test.describe("pulpit", () => {
     await expect(page.getByRole("region", { name: "Alokacja" })).toContainText("Gotówka");
     await expect(page.getByRole("region", { name: "Największe pozycje" })).toContainText("Konto osobiste");
     await expect(page.getByRole("note")).toContainText("nie stanowi");
+    // Bez poziomego przewijania (na telefonie ukryta tabela wykresu potrafiła rozepchnąć stronę).
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth),
+    ).toBeLessThanOrEqual(0);
 
     await page.getByRole("link", { name: "Wszystko" }).click();
     await expect(page).toHaveURL(/range=all/);

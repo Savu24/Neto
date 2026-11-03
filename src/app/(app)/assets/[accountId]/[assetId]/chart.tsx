@@ -96,25 +96,27 @@ export function ValueChart({
           {labels.cost}
         </span>
       </figcaption>
-      <table className="sr-only">
-        <caption>{labels.alt}</caption>
-        <thead>
-          <tr>
-            <th scope="col">{labels.month}</th>
-            <th scope="col">{labels.value}</th>
-            <th scope="col">{labels.cost}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usable.map((p) => (
-            <tr key={p.date}>
-              <th scope="row">{formatDate(`${p.date}T12:00:00Z`, locale)}</th>
-              <td>{p.valuePln ? formatMoney(p.valuePln, "PLN", locale) : "—"}</td>
-              <td>{p.costPln ? formatMoney(p.costPln, "PLN", locale) : "—"}</td>
+      <div className="sr-only">
+        <table>
+          <caption>{labels.alt}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{labels.month}</th>
+              <th scope="col">{labels.value}</th>
+              <th scope="col">{labels.cost}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {usable.map((p) => (
+              <tr key={p.date}>
+                <th scope="row">{formatDate(`${p.date}T12:00:00Z`, locale)}</th>
+                <td>{p.valuePln ? formatMoney(p.valuePln, "PLN", locale) : "—"}</td>
+                <td>{p.costPln ? formatMoney(p.costPln, "PLN", locale) : "—"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </figure>
   );
 }
