@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from "node:async_hooks";
 import type { PrismaClient } from "@/generated/prisma/client";
 
 /**
@@ -176,7 +177,7 @@ function mergeWhere(where: Where | undefined, scope: Where, unique: boolean): Wh
 
 type Args = Record<string, unknown> & { where?: Where; data?: unknown; create?: unknown; update?: unknown };
 
-export function scopedDb(base: PrismaClient, userId: string) {
+export function scopedDb(rootBase: PrismaClient, userId: string) {
   if (!userId) throw new ScopeError("scopedDb wymaga userId");
 
   async function assertParents(model: string, policy: Policy, rows: unknown) {
@@ -196,6 +197,9 @@ export function scopedDb(base: PrismaClient, userId: string) {
 
   function countOwned(model: ParentCheck["model"], ids: string[]): Promise<number> {
     const id = { in: ids };
+    // W transakcji interaktywnej (scopedTransaction) sprawdzamy w tej samej transakcji, żeby rekord
+    // nadrzędny utworzony chwilę wcześniej był widoczny. Warunek userId jest jawny, więc klient nie ma znaczenia.
+    const base = (transactionClient.getStore() as PrismaClient | undefined) ?? rootBase;
     switch (model) {
       case "financialAccount":
         return base.financialAccount.count({ where: { id, userId } });
@@ -237,7 +241,7 @@ export function scopedDb(base: PrismaClient, userId: string) {
     }
   }
 
-  return base.$extends({
+  return rootBase.$extends({
     name: "neto-scope",
     query: {
       $allModels: {
@@ -292,3 +296,20 @@ export function scopedDb(base: PrismaClient, userId: string) {
 }
 
 export type ScopedDb = ReturnType<typeof scopedDb>;
+
+const transactionClient = new AsyncLocalStorage<unknown>();
+
+export type ScopedTx = Parameters<Parameters<ScopedDb["$transaction"]>[0]>[0];
+
+/**
+ * Transakcja interaktywna na kliencie zawężonym. Używaj zamiast `db.$transaction(fn)`: sprawdzenie
+ * właściciela rekordu nadrzędnego odbywa się wtedy w tej samej transakcji (np. konto utworzone
+ * w transakcji, a potem jego transakcja finansowa).
+ */
+export function scopedTransaction<T>(
+  db: ScopedDb,
+  fn: (tx: ScopedTx) => Promise<T>,
+  options?: Parameters<ScopedDb["$transaction"]>[1],
+): Promise<T> {
+  return db.$transaction((tx) => transactionClient.run(tx, () => fn(tx)), options);
+}

@@ -5,6 +5,7 @@
  */
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient, type Prisma } from "../src/generated/prisma/client";
+import { seedCatalog } from "../src/lib/portfolio/catalog/seed";
 
 try {
   process.loadEnvFile(".env.local");
@@ -24,6 +25,7 @@ const DEMO_EMAIL = "demo@neto.localhost";
 const d = (iso: string) => new Date(`${iso}T00:00:00Z`);
 
 async function main() {
+  await seedCatalog(db);
   await db.user.deleteMany({ where: { email: DEMO_EMAIL } });
   const user = await db.user.create({
     data: { email: DEMO_EMAIL, name: "Kasia (demo)", birthYear: 1992, emailVerified: new Date() },

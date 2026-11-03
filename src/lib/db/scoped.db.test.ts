@@ -1,7 +1,7 @@
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { Prisma } from "@/generated/prisma/client";
 import { resetDb, testDb } from "../../../tests/db";
-import { ScopeError, policies, scopedDb } from "./scoped";
+import { ScopeError, policies, scopedDb, scopedTransaction } from "./scoped";
 
 const base = testDb();
 const day = (iso: string) => new Date(`${iso}T00:00:00Z`);
@@ -169,5 +169,44 @@ describe("scopedDb: reguły dostępu", () => {
     });
     const sum = await scopedDb(base, a.id).transaction.aggregate({ _sum: { amount: true } });
     expect(sum._sum.amount?.toString()).toBe("12345678901334.5678");
+  });
+
+  it("scopedTransaction: rekord nadrzędny z tej samej transakcji jest widoczny, cudzy nadal nie", async () => {
+    const { a, b, accA } = await twoUsers();
+    const sa = scopedDb(base, a.id);
+    const created = await scopedTransaction(sa, async (tx) => {
+      const acc = await tx.financialAccount.create({
+        data: { userId: a.id, name: "Nowe", kind: "ASSET", type: "CHECKING", currency: "PLN" },
+      });
+      await tx.transaction.create({
+        data: { accountId: acc.id, type: "DEPOSIT", date: day("2026-11-02"), amount: "1", currency: "PLN" },
+      });
+      return acc;
+    });
+    expect(await base.transaction.count({ where: { accountId: created.id } })).toBe(1);
+    const sb = scopedDb(base, b.id);
+    await expect(
+      scopedTransaction(sb, (tx) =>
+        tx.transaction.create({
+          data: {
+            accountId: accA.id,
+            type: "DEPOSIT",
+            date: day("2026-11-02"),
+            amount: "1",
+            currency: "PLN",
+          },
+        }),
+      ),
+    ).rejects.toBeInstanceOf(ScopeError);
+    // nieudana transakcja niczego nie zostawia
+    await expect(
+      scopedTransaction(sa, async (tx) => {
+        await tx.financialAccount.create({
+          data: { userId: a.id, name: "Wycofane", kind: "ASSET", type: "CASH", currency: "PLN" },
+        });
+        throw new Error("przerwij");
+      }),
+    ).rejects.toThrow("przerwij");
+    expect(await base.financialAccount.count({ where: { name: "Wycofane" } })).toBe(0);
   });
 });

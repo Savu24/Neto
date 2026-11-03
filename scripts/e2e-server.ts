@@ -10,6 +10,7 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { createServer } from "node:net";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { runSeedCatalog } from "./seed-catalog";
 
 const PORT = Number(process.env.E2E_PORT ?? 3100);
 export const MAIL_DIR = path.resolve("test-results/mail");
@@ -53,6 +54,8 @@ async function main() {
     env: { ...process.env, DATABASE_URL: url },
     stdio: "pipe",
   });
+  // Katalog wspólny instrumentów do wyszukiwarki (HU-2.2).
+  await runSeedCatalog(url);
   rmSync(MAIL_DIR, { recursive: true, force: true });
 
   const child = spawn(
