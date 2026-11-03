@@ -24,7 +24,7 @@ export default async function AddPage() {
           <li key={o.href}>
             <Link
               href={o.href}
-              className="block h-full rounded-xl border border-line bg-surface p-4 hover:border-brand lg:p-5"
+              className="block h-full rounded-xl border border-line bg-surface p-4 shadow-card hover:border-brand lg:p-5"
             >
               <span className="block text-base font-semibold text-brand">{o.title}</span>
               <span className="mt-1 block text-[14px] text-ink-2">{o.body}</span>

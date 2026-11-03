@@ -86,7 +86,7 @@ function GoalCard({ goal: g, t, locale }: { goal: GoalView; t: T; locale: Locale
         : t("sourceManual");
   return (
     <article
-      className="rounded-xl border border-line bg-surface p-4 lg:p-5"
+      className="rounded-xl border border-line bg-surface p-4 shadow-card lg:p-5"
       aria-labelledby={`goal-${g.id}`}
       data-testid="goal-card"
     >

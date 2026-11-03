@@ -31,9 +31,18 @@ export function AppNav() {
     <>
       <nav
         aria-label={t("mainNavigation")}
-        className="sticky top-0 hidden h-dvh flex-col gap-1 border-r border-line bg-surface px-3.5 py-5 lg:flex"
+        className="sticky top-0 hidden h-dvh flex-col gap-1 border-r border-line bg-surface px-4 py-6 lg:flex"
       >
-        <Link href="/dashboard" className="px-2.5 pb-4 text-[22px] font-bold tracking-tight text-brand">
+        <Link
+          href="/dashboard"
+          className="mb-5 flex items-center gap-2.5 px-2 text-[20px] font-bold tracking-tight text-ink"
+        >
+          <span
+            aria-hidden
+            className="grid size-8 place-items-center rounded-[9px] bg-brand text-[17px] font-bold text-on-brand"
+          >
+            N
+          </span>
           {tc("appName")}
         </Link>
         {main.map(({ href, label, Icon }) => (
@@ -41,7 +50,7 @@ export function AppNav() {
             key={href}
             href={href}
             aria-current={current(href)}
-            className="flex items-center gap-3 rounded-lg px-2.5 py-2 text-ink-2 hover:bg-bg aria-[current=page]:bg-brand-soft aria-[current=page]:font-semibold aria-[current=page]:text-brand"
+            className="flex items-center gap-3 rounded-[9px] px-2.5 py-2 font-medium text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink aria-[current=page]:bg-brand-soft aria-[current=page]:font-semibold aria-[current=page]:text-brand"
           >
             <Icon />
             {t(label)}
@@ -49,7 +58,7 @@ export function AppNav() {
         ))}
         <Link
           href="/add"
-          className="mt-3.5 flex items-center justify-center gap-2 rounded-[10px] bg-brand px-4 py-2.5 font-semibold text-on-brand"
+          className="mt-5 flex items-center justify-center gap-2 rounded-[10px] bg-brand px-4 py-2.5 font-semibold text-on-brand shadow-card transition-colors hover:bg-brand-strong"
         >
           <PlusIcon width={18} height={18} />
           {t("add")}
@@ -58,7 +67,7 @@ export function AppNav() {
 
       <nav
         aria-label={t("mainNavigation")}
-        className="fixed inset-x-0 bottom-0 z-10 grid grid-cols-5 items-end border-t border-line bg-surface px-1 pt-1.5 pb-[calc(6px+env(safe-area-inset-bottom))] lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-10 grid grid-cols-5 items-end border-t border-line bg-surface/90 px-1 pt-1.5 pb-[calc(6px+env(safe-area-inset-bottom))] backdrop-blur-md lg:hidden"
       >
         {[main[0], main[1]].map(({ href, label, Icon }) => (
           <BottomLink key={href} href={href} label={t(label)} current={current(href)}>
@@ -66,7 +75,7 @@ export function AppNav() {
           </BottomLink>
         ))}
         <Link href="/add" aria-label={t("add")} className="flex justify-center">
-          <span className="-mt-4.5 grid size-12 place-items-center rounded-full bg-brand text-on-brand">
+          <span className="-mt-5 grid size-13 place-items-center rounded-full bg-brand text-on-brand shadow-raised ring-4 ring-bg">
             <PlusIcon width={24} height={24} />
           </span>
         </Link>

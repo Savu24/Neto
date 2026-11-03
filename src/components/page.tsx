@@ -3,10 +3,10 @@ import type { ReactNode } from "react";
 
 export function PageHeader({ title, meta, actions }: { title: string; meta?: string; actions?: ReactNode }) {
   return (
-    <header className="flex items-center justify-between gap-4 pt-3.5 pb-2.5 lg:pt-5.5 lg:pb-4.5">
+    <header className="flex items-center justify-between gap-4 pt-5 pb-3 lg:pt-8 lg:pb-5">
       <div>
-        <h1 className="text-xl font-semibold tracking-tight lg:text-2xl">{title}</h1>
-        {meta ? <p className="text-[13px] text-ink-3">{meta}</p> : null}
+        <h1 className="text-[22px] font-semibold tracking-[-0.02em] text-ink lg:text-[28px]">{title}</h1>
+        {meta ? <p className="mt-0.5 text-[13.5px] text-ink-3">{meta}</p> : null}
       </div>
       {actions ? <div className="flex gap-1">{actions}</div> : null}
     </header>
@@ -24,13 +24,13 @@ export function EmptyState({
   action?: { href: string; label: string };
 }) {
   return (
-    <section className="mt-4 rounded-xl border border-line bg-surface px-5 py-8">
-      <h2 className="text-base font-semibold">{title}</h2>
-      <p className="mt-1 max-w-[60ch] text-ink-2">{body}</p>
+    <section className="mt-4 rounded-2xl border border-line bg-surface px-6 py-9 shadow-card">
+      <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+      <p className="mt-1.5 max-w-[60ch] text-ink-2">{body}</p>
       {action ? (
         <Link
           href={action.href}
-          className="mt-4 inline-flex rounded-[10px] bg-brand px-4 py-2.5 font-semibold text-on-brand"
+          className="mt-5 inline-flex rounded-[10px] bg-brand px-4 py-2.5 font-semibold text-on-brand shadow-card transition-colors hover:bg-brand-strong"
         >
           {action.label}
         </Link>

@@ -97,7 +97,7 @@ export default async function PositionPage({ params }: PageProps<"/assets/[accou
       <BackLink href={`/assets/${accountId}`}>{account.name}</BackLink>
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-6">
         <div>
-          <header className="mt-2 rounded-xl border border-line bg-surface p-4 lg:p-5">
+          <header className="mt-2 rounded-xl border border-line bg-surface p-4 shadow-card lg:p-5">
             <h1 className="text-xl font-semibold tracking-tight lg:text-2xl">{asset.name}</h1>
             <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[13px] text-ink-3">
               <span>{[asset.symbol, asset.exchange, cur].filter(Boolean).join(", ")}.</span>

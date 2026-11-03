@@ -36,7 +36,7 @@ PW_CHANNEL=msedge npx playwright test   # e2e na zbudowanej aplikacji; w CI chro
 - `src/i18n`: słowniki PL/EN w zakresach. Serwer: `getT("zakres")`; klient: `useT("zakres")` pod `I18nProvider` (layout `(app)` przekazuje tylko potrzebne zakresy przez `pickMessages`). Nowy zakres: pliki JSON w obu językach + wpis w `src/i18n/dictionaries.ts` (plik wspólny).
 - `src/lib/format.ts`: kwoty, procenty, daty (Europe/Warsaw). Kwoty przekazuj jako string z Decimal, nie jako float.
 - `src/lib/{auth,portfolio,pricing,native}`: moduły domenowe (opis w README w każdym katalogu).
-- Kolory tylko przez tokeny z `globals.css` (`bg-surface`, `text-ink-2`, `text-up`, `text-down`…); tryb ciemny przez `data-theme` na `<html>` albo `prefers-color-scheme`.
+- Kolory tylko przez tokeny z `globals.css` (`bg-surface`, `text-ink-2`, `text-up`, `text-down`…). Jeden motyw, jasny (tryb ciemny usunięty 03.11.2026 decyzją właściciela); nie dodawaj `prefers-color-scheme: dark`.
 - Ścieżki aplikacji po angielsku (`/dashboard`, `/assets`, `/goals`, `/settings`), teksty po polsku i angielsku ze słowników.
 - `mobile/`: powłoka Capacitor (Etap 11), własny `package.json`.
 - Kwoty i ilości w logice: `D()` z `src/lib/money.ts` (decimal.js), nigdy `number`.

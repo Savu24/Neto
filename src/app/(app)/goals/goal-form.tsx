@@ -219,7 +219,10 @@ export function GoalForm({
       </label>
 
       {plan ? (
-        <section aria-label={t("previewTitle")} className="rounded-xl border border-line bg-surface p-4">
+        <section
+          aria-label={t("previewTitle")}
+          className="rounded-xl border border-line bg-surface p-4 shadow-card"
+        >
           {plan.kind === "plan" ? (
             <>
               <SavingsFigures

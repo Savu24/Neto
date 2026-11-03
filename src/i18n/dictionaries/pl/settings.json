@@ -1,10 +1,6 @@
 {
   "title": "Ustawienia",
-  "appearance": "Wygląd i język",
-  "theme": "Motyw",
-  "themeSystem": "Systemowy",
-  "themeLight": "Jasny",
-  "themeDark": "Ciemny",
+  "appearance": "Język i waluta",
   "language": "Język",
   "languagePl": "Polski",
   "languageEn": "English",

@@ -71,7 +71,7 @@ export default async function AccountPage({ params }: PageProps<"/assets/[accoun
   return (
     <I18nProvider locale={locale} messages={pickMessages(locale, ["common", "assets", "transactions"])}>
       <BackLink href="/assets">{t("backToAssets")}</BackLink>
-      <header className="mt-2 rounded-xl border border-line bg-surface p-4 lg:p-5">
+      <header className="mt-2 rounded-xl border border-line bg-surface p-4 shadow-card lg:p-5">
         <h1 className="text-xl font-semibold tracking-tight lg:text-2xl">{a.name}</h1>
         <div className="mt-1 flex flex-wrap items-center gap-1.5 text-[13px] text-ink-3">
           {accountSub(a, t, locale)}

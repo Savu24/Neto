@@ -21,7 +21,7 @@ export function Field({
       <input
         id={id}
         aria-describedby={hintId}
-        className="h-11 rounded-[10px] border border-line bg-surface px-3 text-[15px] text-ink placeholder:text-ink-3 focus-visible:border-brand"
+        className="h-11 rounded-[10px] border border-line-strong bg-surface px-3 text-[15px] text-ink placeholder:text-ink-3 focus-visible:border-brand"
         {...props}
       />
       {hint ? (
@@ -44,16 +44,16 @@ export function SubmitButton({
 }) {
   const { pending } = useFormStatus();
   const styles = {
-    primary: "bg-brand text-on-brand",
-    secondary: "border border-line text-brand",
-    danger: "border border-down text-down",
+    primary: "bg-brand text-on-brand shadow-card hover:bg-brand-strong",
+    secondary: "border border-line-strong bg-surface text-ink shadow-card hover:bg-surface-2",
+    danger: "border border-down/40 bg-surface text-down hover:bg-down-soft",
   }[variant];
   return (
     <button
       type="submit"
       disabled={pending}
       aria-busy={pending}
-      className={`h-11 rounded-[10px] px-4 font-semibold disabled:opacity-60 ${styles} ${className}`}
+      className={`h-11 rounded-[10px] px-4 font-semibold transition-colors disabled:opacity-60 ${styles} ${className}`}
     >
       {children}
     </button>
@@ -63,7 +63,10 @@ export function SubmitButton({
 export function FormMessage({ state }: { state: FormState }) {
   if (state?.error) {
     return (
-      <p role="alert" className="rounded-[10px] bg-down-soft px-3 py-2 text-sm text-ink">
+      <p
+        role="alert"
+        className="rounded-[10px] border border-down/20 bg-down-soft px-3 py-2 text-sm text-down"
+      >
         {state.error}
       </p>
     );

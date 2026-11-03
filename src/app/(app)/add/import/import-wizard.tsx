@@ -143,7 +143,7 @@ export function ImportWizard({
       {notice ? <Notice>{notice}</Notice> : null}
 
       {step === "file" ? (
-        <div className="grid gap-4 rounded-xl border border-line bg-surface p-4 lg:p-5">
+        <div className="grid gap-4 rounded-xl border border-line bg-surface p-4 shadow-card lg:p-5">
           <Select label={t("account")} value={accountId} onChange={(e) => setAccountId(e.target.value)}>
             {accounts.map((a) => (
               <option key={a.id} value={a.id}>
@@ -174,7 +174,7 @@ export function ImportWizard({
       ) : null}
 
       {step === "mapping" && analysis && mapping ? (
-        <div className="grid gap-4 rounded-xl border border-line bg-surface p-4 lg:p-5">
+        <div className="grid gap-4 rounded-xl border border-line bg-surface p-4 shadow-card lg:p-5">
           <p className="text-[14px] text-ink-2">
             {t("detected", {
               encoding: analysis.encoding.toUpperCase(),
@@ -269,7 +269,7 @@ export function ImportWizard({
       ) : null}
 
       {step === "preview" && preview ? (
-        <div className="grid gap-4 rounded-xl border border-line bg-surface p-4 lg:p-5">
+        <div className="grid gap-4 rounded-xl border border-line bg-surface p-4 shadow-card lg:p-5">
           <p role="status" className="font-medium">
             {t("summary", {
               total: preview.total,
@@ -324,7 +324,7 @@ export function ImportWizard({
       ) : null}
 
       {step === "done" ? (
-        <div className="grid gap-3 rounded-xl border border-line bg-surface p-4 lg:p-5">
+        <div className="grid gap-3 rounded-xl border border-line bg-surface p-4 shadow-card lg:p-5">
           {result ? (
             <>
               <p role="status" className="font-medium">

@@ -78,7 +78,7 @@ export function TransactionForm({
   return (
     <form
       action={action}
-      className="grid gap-4 rounded-xl border border-line bg-surface p-4 lg:p-5"
+      className="grid gap-4 rounded-xl border border-line bg-surface p-4 shadow-card lg:p-5"
       noValidate
     >
       <div className="grid gap-4 sm:grid-cols-2">
@@ -348,7 +348,7 @@ function InstrumentPicker({
         }}
         placeholder={t("searchPlaceholder")}
         autoComplete="off"
-        className="h-11 rounded-[10px] border border-line bg-surface px-3 text-[15px] text-ink placeholder:text-ink-3"
+        className="h-11 rounded-[10px] border border-line-strong bg-surface px-3 text-[15px] text-ink placeholder:text-ink-3"
       />
       <div aria-live="polite" className="text-[13px] text-ink-3">
         {pending ? t("searching") : hits && hits.length === 0 && query.trim() ? t("searchEmpty") : null}

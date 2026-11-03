@@ -46,7 +46,7 @@ export function Select({
       <select
         id={id}
         aria-describedby={hint ? `${id}-hint` : undefined}
-        className="h-11 rounded-[10px] border border-line bg-surface px-3 text-[15px] text-ink"
+        className="h-11 rounded-[10px] border border-line-strong bg-surface px-3 text-[15px] text-ink"
         {...props}
       >
         {children}
@@ -107,7 +107,7 @@ export function AccountForm({
                 {ACCOUNT_TYPE_LIST.filter((x) => ACCOUNT_TYPES[x].group === g).map((x) => (
                   <label
                     key={x}
-                    className="flex cursor-pointer items-center gap-2 rounded-[10px] border border-line bg-surface px-3 py-2.5 text-[14px] has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:font-semibold"
+                    className="flex cursor-pointer items-center gap-2 rounded-[10px] border border-line-strong bg-surface px-3 py-2.5 text-[14px] has-[:checked]:border-brand has-[:checked]:bg-brand-soft has-[:checked]:font-semibold"
                   >
                     <input
                       type="radio"
@@ -129,7 +129,7 @@ export function AccountForm({
       )}
 
       {type ? (
-        <div className="grid gap-4 rounded-xl border border-line bg-surface p-4">
+        <div className="grid gap-4 rounded-xl border border-line bg-surface p-4 shadow-card">
           <Field
             label={t("name")}
             name="name"
@@ -379,7 +379,7 @@ function TextArea({
         rows={3}
         maxLength={2000}
         aria-describedby={`${id}-hint`}
-        className="rounded-[10px] border border-line bg-surface px-3 py-2 text-[15px] text-ink"
+        className="rounded-[10px] border border-line-strong bg-surface px-3 py-2 text-[15px] text-ink"
         {...props}
       />
       <p id={`${id}-hint`} className="text-[13px] text-ink-3">

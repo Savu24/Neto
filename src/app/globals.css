@@ -1,98 +1,61 @@
 @import "tailwindcss";
 
-/* Tokeny wyglądu (SPEC sekcja 20). Kolory zawsze przez te zmienne, nigdy wpisane na sztywno w komponentach. */
+/*
+ * Tokeny wyglądu (SPEC sekcja 20). Kolory zawsze przez te zmienne, nigdy wpisane na sztywno w komponentach.
+ * Jeden motyw: jasny (decyzja właściciela 03.11.2026, tryb ciemny usunięty).
+ */
 :root {
-  --bg: #f5f7ff;
+  --bg: #f4f6fa;
   --surface: #ffffff;
-  --ink: #0f1638;
-  --ink-2: #3e4a78;
-  --ink-3: #5c6792;
-  --line: #dce2f7;
-  --brand: #2f4fe0;
-  --brand-soft: #e4e9ff;
+  --surface-2: #f9fafc;
+  --ink: #101828;
+  --ink-2: #475467;
+  --ink-3: #667085;
+  --line: #e4e7ec;
+  --line-strong: #d0d5dd;
+  --brand: #2b4acb;
+  --brand-strong: #2039a8;
+  --brand-soft: #eef2ff;
   --on-brand: #ffffff;
-  --up: #0a8a60;
-  --down: #c63b2e;
-  --down-soft: #fbe3e0;
-  --warn: #8a5f0c;
-  --warn-soft: #f8eed8;
-  --focus: #2f4fe0;
-  --chart-1: #2f4fe0;
-  --chart-2: #7d95ff;
+  --up: #067647;
+  --up-soft: #ecfdf3;
+  --down: #b42318;
+  --down-soft: #fef3f2;
+  --warn: #b54708;
+  --warn-soft: #fffaeb;
+  --focus: #2b4acb;
+  --chart-1: #2b4acb;
+  --chart-2: #6f86ea;
   --chart-3: #12b886;
-  --chart-4: #b4c2ff;
+  --chart-4: #b7c4f7;
   --chart-5: #f2a93b;
   color-scheme: light;
-}
-
-/* Tryb ciemny: wybrany ręcznie (data-theme) albo systemowy. Oba bloki muszą mieć te same wartości. */
-:root[data-theme="dark"] {
-  --bg: #0b1230;
-  --surface: #141e4a;
-  --ink: #eef2ff;
-  --ink-2: #b9c3ec;
-  --ink-3: #8e9ad0;
-  --line: #27336c;
-  --brand: #6e8bff;
-  --brand-soft: #1f2d6e;
-  --on-brand: #0b1230;
-  --up: #3ddc9f;
-  --down: #ff8a7a;
-  --down-soft: #3d1e2c;
-  --warn: #f2c14e;
-  --warn-soft: #362b17;
-  --focus: #8fa5ff;
-  --chart-1: #6e8bff;
-  --chart-2: #3b5bdb;
-  --chart-3: #3ddc9f;
-  --chart-4: #c3cfff;
-  --chart-5: #f2c14e;
-  color-scheme: dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0b1230;
-    --surface: #141e4a;
-    --ink: #eef2ff;
-    --ink-2: #b9c3ec;
-    --ink-3: #8e9ad0;
-    --line: #27336c;
-    --brand: #6e8bff;
-    --brand-soft: #1f2d6e;
-    --on-brand: #0b1230;
-    --up: #3ddc9f;
-    --down: #ff8a7a;
-    --down-soft: #3d1e2c;
-    --warn: #f2c14e;
-    --warn-soft: #362b17;
-    --focus: #8fa5ff;
-    --chart-1: #6e8bff;
-    --chart-2: #3b5bdb;
-    --chart-3: #3ddc9f;
-    --chart-4: #c3cfff;
-    --chart-5: #f2c14e;
-    color-scheme: dark;
-  }
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-ink: var(--ink);
   --color-ink-2: var(--ink-2);
   --color-ink-3: var(--ink-3);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
   --color-brand-soft: var(--brand-soft);
   --color-on-brand: var(--on-brand);
   --color-up: var(--up);
+  --color-up-soft: var(--up-soft);
   --color-down: var(--down);
   --color-down-soft: var(--down-soft);
   --color-warn: var(--warn);
   --color-warn-soft: var(--warn-soft);
   --color-focus: var(--focus);
   --font-sans: var(--font-schibsted), system-ui, sans-serif;
+  /* Karty: cienka linia i bardzo lekki cień, żeby odróżnić je od tła bez ciężkich ramek. */
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.05), 0 1px 3px rgb(16 24 40 / 0.04);
+  --shadow-raised: 0 8px 20px -6px rgb(43 74 203 / 0.45);
 }
 
 body {
@@ -100,10 +63,31 @@ body {
   color: var(--ink);
 }
 
-:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 2px;
-  border-radius: 4px;
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Pola formularzy: obramowanie mocniejsze niż linie kart i miękka obwódka przy fokusie. */
+  input:not([type="checkbox"], [type="radio"], [type="file"]),
+  select,
+  textarea {
+    border-color: var(--line-strong);
+    box-shadow: 0 1px 2px rgb(16 24 40 / 0.05);
+    transition:
+      border-color 120ms ease,
+      box-shadow 120ms ease;
+  }
+
+  input:not([type="checkbox"], [type="radio"], [type="file"]):focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 4px rgb(43 74 203 / 0.14);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

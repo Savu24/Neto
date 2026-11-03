@@ -38,15 +38,16 @@ test.describe("szkielet aplikacji (zalogowany)", () => {
     await expect(nav.getByRole("link", { name: "Cele" })).toHaveAttribute("aria-current", "page");
   });
 
-  test("motyw i język zapisują się i działają po przeładowaniu", async ({ authedPage: page }) => {
+  test("język zapisuje się i działa po przeładowaniu; jest tylko jasny motyw", async ({
+    authedPage: page,
+  }) => {
     await page.goto("/settings");
-    await page.getByRole("button", { name: "Ciemny" }).click();
-    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await expect(page.getByRole("button", { name: "Ciemny" })).toHaveCount(0);
     await page.getByRole("button", { name: "English" }).click();
     await expect(page.getByRole("heading", { level: 1, name: "Settings" })).toBeVisible();
     await page.reload();
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
-    await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+    await expect(page.locator("html")).not.toHaveAttribute("data-theme");
   });
 });
 

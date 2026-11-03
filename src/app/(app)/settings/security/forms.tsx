@@ -48,7 +48,7 @@ function BackupCodes({ codes }: { codes: string[] }) {
   const t = useT("settings");
   const router = useRouter();
   return (
-    <div className="grid gap-2 rounded-xl border border-line bg-surface p-4">
+    <div className="grid gap-2 rounded-xl border border-line bg-surface p-4 shadow-card">
       <h3 className="font-semibold">{t("backupCodesTitle")}</h3>
       <p className="text-sm text-ink-2">{t("backupCodesLead")}</p>
       <ul className="grid grid-cols-2 gap-1 font-mono text-[15px]" aria-label={t("backupCodesTitle")}>

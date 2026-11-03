@@ -141,7 +141,7 @@ export function BondRatesForm({ assetId, rates }: { assetId: string; rates: stri
         rows={4}
         defaultValue={rates}
         aria-describedby={`${id}-hint`}
-        className="rounded-[10px] border border-line bg-surface px-3 py-2 text-[15px] text-ink"
+        className="rounded-[10px] border border-line-strong bg-surface px-3 py-2 text-[15px] text-ink"
       />
       <p id={`${id}-hint`} className="text-[13px] text-ink-3">
         {t("bondRatesHint")}

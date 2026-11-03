@@ -84,7 +84,10 @@ export function RetirementCalculator({ defaults }: { defaults: AssumptionValues 
         {parsed.status === "ok" && result ? (
           <Result input={parsed.input} result={result} />
         ) : (
-          <p role="status" className="rounded-xl border border-line bg-surface px-4 py-4 text-ink-2">
+          <p
+            role="status"
+            className="rounded-xl border border-line bg-surface px-4 py-4 text-ink-2 shadow-card"
+          >
             {parsed.status === "missingAge" ? t("missingAge") : t("fixErrors")}{" "}
             <a href="#assumptions" className="font-semibold text-brand underline-offset-2 hover:underline">
               {t("goToAssumptions")}

@@ -149,7 +149,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="mt-14 rounded-xl border border-line bg-surface px-5 py-8 sm:px-8">
+        <section className="mt-14 rounded-xl border border-line bg-surface px-5 py-8 shadow-card sm:px-8">
           <h2 className="text-xl font-semibold tracking-tight">{t("ctaTitle")}</h2>
           <p className="mt-1 text-ink-2">{t("ctaBody")}</p>
           <div className="mt-5 flex flex-wrap gap-3">
@@ -203,7 +203,7 @@ function BalanceIllustration({
   const net = assets.map((a, i) => zero - (zero - a - (liabilities[i] - zero)));
   const pts = (ys: number[]) => xs.map((x, i) => `${x},${ys[i]}`).join(" ");
   return (
-    <figure className="rounded-xl border border-line bg-surface p-4 sm:p-6">
+    <figure className="rounded-xl border border-line bg-surface p-4 shadow-card sm:p-6">
       <svg viewBox="0 0 560 250" role="img" aria-label={label} className="h-auto w-full">
         <polygon points={`${pts(assets)} 560,${zero} 0,${zero}`} className="fill-brand-soft" />
         <polygon

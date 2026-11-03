@@ -80,7 +80,7 @@ export default async function AssetsPage({ searchParams }: PageProps<"/assets">)
 
       {!archived ? (
         <div
-          className="grid grid-cols-3 gap-3 rounded-xl border border-line bg-surface p-4"
+          className="grid grid-cols-3 gap-3 rounded-xl border border-line bg-surface p-4 shadow-card"
           aria-label={t("title")}
         >
           <Total label={t("totalsAssets")}>
@@ -139,7 +139,7 @@ export default async function AssetsPage({ searchParams }: PageProps<"/assets">)
         </div>
 
         <aside className="mt-6 lg:mt-4">
-          <section className="hidden rounded-xl border border-line bg-surface p-4 lg:block">
+          <section className="hidden rounded-xl border border-line bg-surface p-4 shadow-card lg:block">
             <h2 className="mb-3 text-base font-semibold">{t("addTitle")}</h2>
             <div className="grid gap-2">
               <ButtonLink href="/add/transaction" variant="primary">
@@ -150,7 +150,7 @@ export default async function AssetsPage({ searchParams }: PageProps<"/assets">)
             </div>
           </section>
           {toUpdate.length > 0 ? (
-            <section className="mt-4 rounded-xl border border-line bg-surface p-4">
+            <section className="mt-4 rounded-xl border border-line bg-surface p-4 shadow-card">
               <h2 className="mb-1 text-base font-semibold">{t("toUpdateTitle")}</h2>
               <Rows>
                 {toUpdate.map(({ account, days }) => (
@@ -220,7 +220,7 @@ function AccountGroups({ accounts, t, locale }: Props) {
         return (
           <section
             key={group}
-            className="mt-4 rounded-xl border border-line bg-surface px-4 py-3"
+            className="mt-4 rounded-xl border border-line bg-surface px-4 py-3 shadow-card"
             aria-labelledby={`g-${group}`}
           >
             <div className="flex items-center justify-between gap-3 border-b border-line pb-2">
@@ -322,7 +322,7 @@ function ClassGroups({ accounts, t, locale }: Props) {
         return (
           <section
             key={cls}
-            className="mt-4 rounded-xl border border-line bg-surface px-4 py-3"
+            className="mt-4 rounded-xl border border-line bg-surface px-4 py-3 shadow-card"
             aria-labelledby={`c-${cls}`}
           >
             <div className="flex items-center justify-between gap-3 border-b border-line pb-2">

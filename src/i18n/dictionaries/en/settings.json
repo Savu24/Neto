@@ -1,10 +1,6 @@
 {
   "title": "Settings",
-  "appearance": "Appearance and language",
-  "theme": "Theme",
-  "themeSystem": "System",
-  "themeLight": "Light",
-  "themeDark": "Dark",
+  "appearance": "Language and currency",
   "language": "Language",
   "languagePl": "Polski",
   "languageEn": "English",

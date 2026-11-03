@@ -75,7 +75,7 @@ export default async function SecurityPage() {
       </Section>
 
       <Section title={t("sessions")}>
-        <ul className="divide-y divide-line rounded-xl border border-line bg-surface px-3.5">
+        <ul className="divide-y divide-line rounded-xl border border-line bg-surface px-3.5 shadow-card">
           {sessions.map((s) => (
             <li key={s.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
               <span>
@@ -104,7 +104,7 @@ export default async function SecurityPage() {
           <form action={logoutAllAction}>
             <button
               type="submit"
-              className="h-11 rounded-[10px] border border-line px-4 font-semibold text-brand"
+              className="h-11 rounded-[10px] border border-line-strong bg-surface px-4 font-semibold text-ink shadow-card transition-colors hover:bg-surface-2"
             >
               {t("logoutAll")}
             </button>
