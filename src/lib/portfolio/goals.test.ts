@@ -6,6 +6,7 @@ import {
   goalPace,
   goalProgress,
   requiredMonthlyContribution,
+  savingsPlan,
 } from "./goals";
 
 describe("goalProgress", () => {
@@ -106,5 +107,36 @@ describe("evaluateGoal", () => {
     });
     expect(status.progress).toBeNull();
     expect(status.required.kind).toBe("achieved");
+  });
+});
+
+describe("savingsPlan", () => {
+  it("50 000 zł za 3 lata od zera: dziennie, tygodniowo i miesięcznie", () => {
+    const plan = savingsPlan(0, 50000, "2026-11-03", "2029-11-03");
+    expect(plan.kind).toBe("plan");
+    if (plan.kind !== "plan") return;
+    expect(plan.days).toBe(1096);
+    expect(plan.months).toBe(36);
+    expect(plan.perMonth?.toFixed(2)).toBe("1388.89");
+    expect(plan.perDay.toFixed(2)).toBe("45.62");
+    expect(plan.perWeek.toFixed(2)).toBe("319.34");
+  });
+
+  it("odlicza już odłożoną kwotę", () => {
+    const plan = savingsPlan("14000", "50000", "2026-11-03", "2029-11-03");
+    expect(plan.kind === "plan" && plan.remaining.toFixed()).toBe("36000");
+    expect(plan.kind === "plan" && plan.perMonth?.toFixed()).toBe("1000");
+  });
+
+  it("mniej niż miesiąc do terminu: bez kwoty miesięcznej", () => {
+    const plan = savingsPlan(0, 700, "2026-11-03", "2026-11-17");
+    expect(plan.kind === "plan" && plan.perMonth).toBeNull();
+    expect(plan.kind === "plan" && plan.perDay.toFixed()).toBe("50");
+  });
+
+  it("cel osiągnięty, bez terminu albo po terminie", () => {
+    expect(savingsPlan(500, 500, "2026-11-03", "2027-01-01").kind).toBe("achieved");
+    expect(savingsPlan(0, 500, "2026-11-03", null)).toMatchObject({ kind: "noDeadline" });
+    expect(savingsPlan(0, 500, "2026-11-03", "2026-11-03")).toMatchObject({ kind: "deadlinePassed" });
   });
 });

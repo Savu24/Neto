@@ -8,13 +8,13 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 // Kolory marki z SPEC 20 / globals.css (tu wpisane, bo PNG nie zna zmiennych CSS).
-const BRAND = "#1d3e63";
+const BRAND = "#2f4fe0";
 const ON_BRAND = "#ffffff";
-const BG = "#f1f4f2";
-const INK = "#16212a";
-const INK_2 = "#4d5a63";
-const DOWN_SOFT = "#f2ddd7";
-const BRAND_SOFT = "#dbe4ee";
+const BG = "#f5f7ff";
+const INK = "#0f1638";
+const INK_2 = "#3e4a78";
+const DOWN_SOFT = "#fbe3e0";
+const BRAND_SOFT = "#e4e9ff";
 
 /** Litera N z trzech wielokątów w polu 512 × 512; `scale` zmniejsza ją wokół środka. */
 function letterN(scale: number) {

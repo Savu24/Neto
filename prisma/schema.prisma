@@ -501,6 +501,8 @@ model Goal {
   targetAmount Decimal   @db.Decimal(20, 4)
   currency     String    @default("PLN") @db.Char(3)
   targetDate   DateTime? @db.Date
+  /// Cel „od zera”: kwota odłożona poza kontami w aplikacji (wpisywana ręcznie). Przy kontach lub wartości netto pusta.
+  savedAmount  Decimal?  @db.Decimal(20, 4)
   isMain       Boolean   @default(false)
   achievedAt   DateTime?
   createdAt    DateTime  @default(now())

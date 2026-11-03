@@ -6,19 +6,20 @@ import { requireUser } from "@/lib/auth/session";
 
 export const metadata: Metadata = { title: "Dodaj" };
 
-/** Wybór: transakcja, konto lub aktywo, import CSV (SPEC 6: środkowy przycisk „Dodaj”). */
+/** Wybór: transakcja, konto lub aktywo, import CSV, cel (SPEC 6: środkowy przycisk „Dodaj”). */
 export default async function AddPage() {
   await requireUser();
-  const [t, tn] = await Promise.all([getT("assets"), getT("nav")]);
+  const [t, tg, tn] = await Promise.all([getT("assets"), getT("goals"), getT("nav")]);
   const options = [
     { href: "/add/transaction", title: t("addTransaction"), body: t("addTransactionHint") },
     { href: "/add/account", title: t("addAccountOrAsset"), body: t("addAccountHint") },
+    { href: "/goals/new", title: tg("newGoal"), body: tg("addGoalHint") },
     { href: "/add/import", title: t("addImport"), body: t("addImportHint") },
   ];
   return (
     <>
       <PageHeader title={tn("add")} meta={t("addLead")} />
-      <ul className="grid gap-3 sm:grid-cols-3">
+      <ul className="grid gap-3 sm:grid-cols-2">
         {options.map((o) => (
           <li key={o.href}>
             <Link

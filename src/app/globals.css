@@ -2,76 +2,76 @@
 
 /* Tokeny wyglądu (SPEC sekcja 20). Kolory zawsze przez te zmienne, nigdy wpisane na sztywno w komponentach. */
 :root {
-  --bg: #f1f4f2;
+  --bg: #f5f7ff;
   --surface: #ffffff;
-  --ink: #16212a;
-  --ink-2: #4d5a63;
-  --ink-3: #6b777e;
-  --line: #d5dcd7;
-  --brand: #1d3e63;
-  --brand-soft: #dbe4ee;
+  --ink: #0f1638;
+  --ink-2: #3e4a78;
+  --ink-3: #5c6792;
+  --line: #dce2f7;
+  --brand: #2f4fe0;
+  --brand-soft: #e4e9ff;
   --on-brand: #ffffff;
-  --up: #1c7a55;
-  --down: #b5452f;
-  --down-soft: #f2ddd7;
+  --up: #0a8a60;
+  --down: #c63b2e;
+  --down-soft: #fbe3e0;
   --warn: #8a5f0c;
-  --warn-soft: #f6ecd6;
-  --focus: #2f6db3;
-  --chart-1: #1d3e63;
-  --chart-2: #4a7aaa;
-  --chart-3: #5b8f7b;
-  --chart-4: #9db8d3;
-  --chart-5: #c9a24a;
+  --warn-soft: #f8eed8;
+  --focus: #2f4fe0;
+  --chart-1: #2f4fe0;
+  --chart-2: #7d95ff;
+  --chart-3: #12b886;
+  --chart-4: #b4c2ff;
+  --chart-5: #f2a93b;
   color-scheme: light;
 }
 
 /* Tryb ciemny: wybrany ręcznie (data-theme) albo systemowy. Oba bloki muszą mieć te same wartości. */
 :root[data-theme="dark"] {
-  --bg: #0e1519;
-  --surface: #16212a;
-  --ink: #e7ecea;
-  --ink-2: #b2bdc2;
-  --ink-3: #8d9aa1;
-  --line: #2a3843;
-  --brand: #8fb4dc;
-  --brand-soft: #1f3247;
-  --on-brand: #0e1519;
-  --up: #5cc49a;
-  --down: #e98b74;
-  --down-soft: #3a2521;
-  --warn: #e0b04f;
-  --warn-soft: #33291a;
-  --focus: #8fb4dc;
-  --chart-1: #8fb4dc;
-  --chart-2: #4f86bd;
-  --chart-3: #6fb096;
-  --chart-4: #c7d8ea;
-  --chart-5: #d8b25c;
+  --bg: #0b1230;
+  --surface: #141e4a;
+  --ink: #eef2ff;
+  --ink-2: #b9c3ec;
+  --ink-3: #8e9ad0;
+  --line: #27336c;
+  --brand: #6e8bff;
+  --brand-soft: #1f2d6e;
+  --on-brand: #0b1230;
+  --up: #3ddc9f;
+  --down: #ff8a7a;
+  --down-soft: #3d1e2c;
+  --warn: #f2c14e;
+  --warn-soft: #362b17;
+  --focus: #8fa5ff;
+  --chart-1: #6e8bff;
+  --chart-2: #3b5bdb;
+  --chart-3: #3ddc9f;
+  --chart-4: #c3cfff;
+  --chart-5: #f2c14e;
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1519;
-    --surface: #16212a;
-    --ink: #e7ecea;
-    --ink-2: #b2bdc2;
-    --ink-3: #8d9aa1;
-    --line: #2a3843;
-    --brand: #8fb4dc;
-    --brand-soft: #1f3247;
-    --on-brand: #0e1519;
-    --up: #5cc49a;
-    --down: #e98b74;
-    --down-soft: #3a2521;
-    --warn: #e0b04f;
-    --warn-soft: #33291a;
-    --focus: #8fb4dc;
-    --chart-1: #8fb4dc;
-    --chart-2: #4f86bd;
-    --chart-3: #6fb096;
-    --chart-4: #c7d8ea;
-    --chart-5: #d8b25c;
+    --bg: #0b1230;
+    --surface: #141e4a;
+    --ink: #eef2ff;
+    --ink-2: #b9c3ec;
+    --ink-3: #8e9ad0;
+    --line: #27336c;
+    --brand: #6e8bff;
+    --brand-soft: #1f2d6e;
+    --on-brand: #0b1230;
+    --up: #3ddc9f;
+    --down: #ff8a7a;
+    --down-soft: #3d1e2c;
+    --warn: #f2c14e;
+    --warn-soft: #362b17;
+    --focus: #8fa5ff;
+    --chart-1: #6e8bff;
+    --chart-2: #3b5bdb;
+    --chart-3: #3ddc9f;
+    --chart-4: #c3cfff;
+    --chart-5: #f2c14e;
     color-scheme: dark;
   }
 }

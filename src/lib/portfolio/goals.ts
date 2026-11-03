@@ -50,6 +50,57 @@ export function requiredMonthlyContribution(
   return { kind: "monthly", amount: remaining.div(months), months };
 }
 
+export type SavingsPlan =
+  | { kind: "achieved" }
+  | { kind: "noDeadline"; remaining: Dec }
+  | { kind: "deadlinePassed"; remaining: Dec }
+  /**
+   * Ile odkładać, żeby zdążyć: dziennie i tygodniowo z liczby dni do terminu, miesięcznie z pełnych
+   * miesięcy (jak `requiredMonthlyContribution`). Przy mniej niż pełnym miesiącu `perMonth` = null.
+   */
+  | {
+      kind: "plan";
+      remaining: Dec;
+      days: number;
+      months: number;
+      perDay: Dec;
+      perWeek: Dec;
+      perMonth: Dec | null;
+    };
+
+/** Plan oszczędzania do terminu, bez zakładanej stopy zwrotu. Daty YYYY-MM-DD. */
+export function savingsPlan(
+  current: DecInput,
+  target: DecInput,
+  today: string,
+  deadline: string | null,
+): SavingsPlan {
+  const remaining = D(target).minus(D(current));
+  if (remaining.lte(0)) return { kind: "achieved" };
+  if (deadline === null) return { kind: "noDeadline", remaining };
+  const days = daysUntil(today, deadline);
+  if (days <= 0) return { kind: "deadlinePassed", remaining };
+  const months = fullMonthsBetween(today, deadline);
+  const perDay = remaining.div(days);
+  return {
+    kind: "plan",
+    remaining,
+    days,
+    months,
+    perDay,
+    perWeek: perDay.times(7),
+    perMonth: months > 0 ? remaining.div(months) : null,
+  };
+}
+
+function daysUntil(today: string, deadline: string): number {
+  const toMs = (key: string) => {
+    const [y, m, d] = parseDateKey(key);
+    return Date.UTC(y, m - 1, d);
+  };
+  return Math.round((toMs(deadline) - toMs(today)) / 86_400_000);
+}
+
 /** Średni miesięczny przyrost z ostatnich `months` miesięcy (domyślnie 3). */
 export function averageMonthlyGrowth(current: DecInput, valueMonthsAgo: DecInput, months = 3): Dec {
   if (months <= 0) throw new Error("Liczba miesięcy musi być dodatnia");

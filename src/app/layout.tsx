@@ -24,8 +24,8 @@ export const viewport: Viewport = {
   // Treść pod wycięciem i paskiem domowym iPhone'a; odstępy dają zmienne env(safe-area-inset-*).
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f1f4f2" },
-    { media: "(prefers-color-scheme: dark)", color: "#0e1519" },
+    { media: "(prefers-color-scheme: light)", color: "#f5f7ff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1230" },
   ],
 };
 

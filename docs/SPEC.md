@@ -275,6 +275,8 @@ Pulpit pokazuje licznik „N pozycji z nieaktualną wyceną” z przejściem do 
 
 - Postęp = bieżąca wartość powiązanych kont (lub wartość netto) ÷ kwota celu.
 - Potrzebna wpłata miesięczna = (cel − bieżąca wartość) ÷ liczba pełnych miesięcy do terminu (bez założonej stopy zwrotu; dopisek o tym).
+- Plan oszczędzania: brakująca kwota ÷ dni do terminu (dziennie), × 7 (tygodniowo) i ÷ pełne miesiące (miesięcznie; przy mniej niż miesiącu brak). Bez stopy zwrotu.
+- Źródło bieżącej wartości: wybrane konta (aktywa, bez zobowiązań), cała wartość netto albo kwota wpisywana ręcznie (cel „od zera”, pole `Goal.savedAmount`, szybkie „Odłożone teraz” na karcie).
 - Tempo: średni miesięczny przyrost z 3 ostatnich miesięcy ≥ potrzebna wpłata → „W dobrym tempie”, inaczej „Poniżej tempa o X zł/mies.” Bez słów ocennych typu „źle”.
 
 ### 7.11 Kalkulator emerytury
@@ -474,6 +476,7 @@ Budżet miesięczny i kategorie, cykliczne płatności, wspólne konta dla dwóc
 | 02.11.2026 | Pierwsza wersja do akceptacji | Claude Code (Etap 1) |
 | 02.11.2026 | Logowanie: własne sesje w bazie (wzorzec Lucia) zamiast Auth.js, Google przez arctic | Claude Code (Etap 4) |
 | 03.11.2026 | Aplikacja do użytku własnego właściciela. iPhone przez PWA z ekranu głównego zamiast Capacitora: wypadają Etap 11 (powłoka iOS, Codemagic, TestFlight) i wysyłka do App Store (Etap 12 część sklepowa, Etap 14 recenzja). Rejestracja zostaje otwarta; szkice prawne i sklepowe zostają w repo bez dalszej pracy | właściciel |
+| 03.11.2026 | Cele: tworzenie, edycja, usuwanie, cel główny, plan dziennie/tygodniowo/miesięcznie, cel „od zera” z ręczną kwotą. Nowa paleta „kobalt” zamiast szarozielonej | właściciel + Claude Code |
 
 ## 20. Makiety i kierunek wizualny
 
@@ -482,7 +485,7 @@ Makiety w `docs/mockups/` to statyczny HTML (ten sam plik działa na telefonie i
 Kierunek:
 
 - **Jedna rzecz charakterystyczna: linia bilansu.** Na wykresie historii aktywa rosną nad poziomą linią zera, zobowiązania wiszą pod nią, a wartość netto to wyraźna linia między nimi. Ten sam motyw wraca w małym pasku bilansu pod główną kwotą. Wszystko wokół jest spokojne.
-- Kolory: tło `#F1F4F2` (chłodna biel), tekst `#16212A` (atrament), marka `#1D3E63` (granat, linia wartości netto, przyciski), wzrost `#1C7A55`, spadek `#B5452F`, ostrzeżenie `#B07A12`, linie `#D5DCD7`. Tryb ciemny: tło `#0E1519`, powierzchnie `#16212A`, tekst `#E7ECEA`.
+- Kolory (od 03.11.2026 „kobalt”, decyzja właściciela; wcześniej szarozielony granat): tło `#F5F7FF` (biel z nutą błękitu), powierzchnie `#FFFFFF`, tekst `#0F1638`, marka `#2F4FE0` (kobalt: przyciski, linia wartości netto), wzrost `#0A8A60` (mięta, w tekście ciemniejsza dla kontrastu), spadek `#C63B2E`, ostrzeżenie `#8A5F0C`, linie `#DCE2F7`. Tryb ciemny: tło `#0B1230` (nocny kobalt), powierzchnie `#141E4A`, tekst `#EEF2FF`, marka `#6E8BFF`, wzrost `#3DDC9F`. Źródło prawdy: tokeny w `src/app/globals.css`.
 - Typografia: Schibsted Grotesk (pełne polskie znaki), cyfry tabelaryczne we wszystkich kwotach. Bez wersalików w etykietach.
 - Układ: listy i sekcje oddzielone przestrzenią i cienką linią, bez siatki identycznych kart z cieniem. Kwoty wyrównane do prawej.
 - Ostateczna paleta i fonty wchodzą do kodu w Etapie 2 jako tokeny; makiety nie są pikselowym wzorcem.
