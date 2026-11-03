@@ -47,6 +47,10 @@ Reguły przyjęte w Etapie 5:
 - Obligacje skarbowe: seria (np. EDO1136) to instrument własny użytkownika z `RetailBondSeries`; każda partia FIFO jest wyceniana od własnej daty zakupu; oprocentowanie okresów wpisuje użytkownik.
 - Cena ręczna instrumentu własnego trafia do `PriceSnapshot` (tabela globalna) surowym klientem, po sprawdzeniu właściciela przez `scopedDb`.
 
+## snapshots/ (Etap 6)
+
+Nocna wycena (`/api/cron/valuation`): kursy NBP do `FxRate`, ceny dostawcy rynkowego do `PriceSnapshot` (tylko z flagą `marketPricing`), migawki `PortfolioSnapshot` z historią wstecz od pierwszej transakcji i obsługa kolejki `RecalcJob`. Szczegóły i reguły w `snapshots/README.md`.
+
 ## import/ (Etap 5)
 
 Import CSV bez bibliotek: `csv.ts` (kodowanie UTF-8/Windows-1250, separator, RFC 4180, wiersz nagłówka pod metryczką banku), `numbers.ts` (1 234,56 i 1,234.56, daty), `mapping.ts` (propozycja mapowania z nazw kolumn, wiersze → szkice transakcji, odciski duplikatów), `service.ts` (podgląd i import tą samą funkcją, duplikaty po `fingerprint`, sprzedaż ponad stan jako błąd wiersza, zapamiętane mapowanie po nagłówku, cofnięcie w 24 h).

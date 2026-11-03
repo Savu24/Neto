@@ -63,6 +63,7 @@
   "staleValuation": "Valued on {date}, update",
   "staleBalance": "Balance as of {date}, update",
   "stalePrice": "Price from {date}",
+  "staleFx": "{currency} rate from {date}",
   "valuationFrom": "Valued on {date}",
   "balanceFrom": "Balance as of {date}",
   "depositSub": "Until {date}, with accrued interest",

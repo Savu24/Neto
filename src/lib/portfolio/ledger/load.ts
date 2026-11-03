@@ -50,6 +50,8 @@ export interface PositionView {
   readonly fxRate: string | null;
   readonly fxDate: DateKey | null;
   readonly stale: { readonly sourceDate: DateKey; readonly age: number } | null;
+  /** Kurs waluty starszy niż 3 dni robocze (SPEC 7.8): data publikacji kursu użytego do wartości w PLN. */
+  readonly fxStale: { readonly sourceDate: DateKey; readonly age: number } | null;
   readonly missingPrice: boolean;
   readonly missingFx: boolean;
   readonly checkRate: boolean;
@@ -188,6 +190,7 @@ function viewPosition(
   const [prefix, assetId] = p.id?.split(":") ?? [];
   const asset = prefix === "asset" || prefix === "bond" ? assets.get(assetId) : undefined;
   const stale = p.issues.find((i) => i.type === "stale" && i.staleness.kind !== "fx");
+  const fxStale = p.issues.find((i) => i.type === "stale" && i.staleness.kind === "fx");
   let costPln: Dec | null = null;
   let resultPln: Dec | null = null;
   let resultPercent: Dec | null = null;
@@ -219,6 +222,10 @@ function viewPosition(
     stale:
       stale && stale.type === "stale"
         ? { sourceDate: stale.staleness.sourceDate, age: stale.staleness.age }
+        : null,
+    fxStale:
+      fxStale && fxStale.type === "stale"
+        ? { sourceDate: fxStale.staleness.sourceDate, age: fxStale.staleness.age }
         : null,
     missingPrice: p.issues.some((i) => i.type === "missingPrice") || (p.priceFromTrade ?? false),
     missingFx: p.issues.some((i) => i.type === "missingFx"),
