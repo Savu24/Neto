@@ -4,18 +4,21 @@ import { Disclaimer, PageHeader } from "@/components/page";
 import { I18nProvider } from "@/i18n/client";
 import { getLocale, getT, pickMessages } from "@/i18n/server";
 import { requireUser } from "@/lib/auth/session";
+import { db } from "@/lib/db/client";
+import { scopedDb } from "@/lib/db/scoped";
+import { saveRetirementPlanAction } from "./actions";
 import { RetirementCalculator } from "./calculator";
 import { loadRetirementDefaults } from "./defaults";
 
 export const metadata: Metadata = { title: "Kalkulator emerytury" };
 
 export default async function RetirementPage() {
-  await requireUser();
+  const { user } = await requireUser();
   const [t, tc, locale, defaults] = await Promise.all([
     getT("retirement"),
     getT("common"),
     getLocale(),
-    loadRetirementDefaults(),
+    loadRetirementDefaults(scopedDb(db(), user.id), user.id),
   ]);
 
   return (
@@ -26,7 +29,7 @@ export default async function RetirementPage() {
       <PageHeader title={t("title")} />
       {/* Layout (app) przekazuje klientowi tylko common, nav i settings; zakres retirement dokładamy tutaj. */}
       <I18nProvider locale={locale} messages={pickMessages(locale, ["common", "retirement"])}>
-        <RetirementCalculator defaults={defaults} />
+        <RetirementCalculator defaults={defaults} save={saveRetirementPlanAction} />
       </I18nProvider>
       <Disclaimer>{tc("disclaimerResults")}</Disclaimer>
     </>

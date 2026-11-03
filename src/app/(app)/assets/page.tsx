@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Disclaimer, EmptyState, PageHeader } from "@/components/page";
+import { PrivacyToggle } from "@/components/privacy-toggle";
 import { getLocale, getT } from "@/i18n/server";
 import { requireUser } from "@/lib/auth/session";
 import { db } from "@/lib/db/client";
@@ -76,6 +77,7 @@ export default async function AssetsPage({ searchParams }: PageProps<"/assets">)
       <PageHeader
         title={archived ? t("archivedTitle") : t("title")}
         meta={t("meta", { count: accounts.length, date: formatDate(dateOf(today), locale, "long") })}
+        actions={<PrivacyToggle />}
       />
 
       {!archived ? (

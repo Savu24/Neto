@@ -90,6 +90,12 @@ body {
   }
 }
 
+/* Tryb prywatny (HU-4.5): kwoty rozmyte, układ bez zmian. */
+[data-private] [data-amt] {
+  filter: blur(7px);
+  user-select: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

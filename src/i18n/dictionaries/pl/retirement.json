@@ -59,5 +59,7 @@
   "errorNumber": "Wpisz liczbę.",
   "errorInteger": "Wpisz liczbę całkowitą.",
   "errorMin": "Wpisz wartość nie mniejszą niż {min}.",
-  "errorRange": "Wpisz wartość od {min} do {max}."
+  "errorRange": "Wpisz wartość od {min} do {max}.",
+  "save": "Zapisz założenia",
+  "saved": "Założenia zapisane. Majątek startowy liczymy z Twoich kont."
 }

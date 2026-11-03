@@ -265,6 +265,49 @@ function visible(p: PositionView, accountCurrency: string): boolean {
   return true;
 }
 
+/** Wiersz konta z bazy (z lokatą) → wejście silnika wyceny. Wspólne dla wyceny bieżącej i historii. */
+export function accountInputOf(
+  a: {
+    id: string;
+    type: AccountType;
+    currency: string;
+    ownershipShare: { toString(): string };
+    includeInNetWorth: boolean;
+    deposit: {
+      principal: { toString(): string };
+      rate: { toString(): string };
+      startDate: Date;
+      termMonths: number;
+      capitalization: Capitalization;
+      autoRenew: boolean;
+    } | null;
+  },
+  transactions: LedgerTransaction[],
+  ctx: { assets: ReadonlyMap<string, LedgerAsset>; prices: ReadonlyMap<string, readonly PricePoint[]> },
+) {
+  return toAccountInput(
+    {
+      id: a.id,
+      type: a.type,
+      currency: a.currency,
+      ownershipShare: a.ownershipShare.toString(),
+      includeInNetWorth: a.includeInNetWorth,
+      deposit: a.deposit
+        ? {
+            principal: a.deposit.principal.toString(),
+            rate: a.deposit.rate.toString(),
+            startDate: keyFromDate(a.deposit.startDate),
+            termMonths: a.deposit.termMonths,
+            capitalization: a.deposit.capitalization,
+            autoRenew: a.deposit.autoRenew,
+          }
+        : null,
+      transactions,
+    },
+    ctx,
+  );
+}
+
 export interface LoadOptions {
   readonly archived?: boolean;
   readonly accountId?: string;
@@ -314,27 +357,7 @@ export async function loadPortfolio(
   }
   const ledgerAssets = new Map(assetRows.map((a) => [a.id, toLedgerAsset(a as AssetRow)]));
   const inputs = accounts.map((a) =>
-    toAccountInput(
-      {
-        id: a.id,
-        type: a.type,
-        currency: a.currency,
-        ownershipShare: a.ownershipShare.toString(),
-        includeInNetWorth: a.includeInNetWorth,
-        deposit: a.deposit
-          ? {
-              principal: a.deposit.principal.toString(),
-              rate: a.deposit.rate.toString(),
-              startDate: keyFromDate(a.deposit.startDate),
-              termMonths: a.deposit.termMonths,
-              capitalization: a.deposit.capitalization,
-              autoRenew: a.deposit.autoRenew,
-            }
-          : null,
-        transactions: txByAccount.get(a.id) ?? [],
-      },
-      { assets: ledgerAssets, prices },
-    ),
+    accountInputOf(a, txByAccount.get(a.id) ?? [], { assets: ledgerAssets, prices }),
   );
   const result = netWorthAt(inputs, today, fx);
 

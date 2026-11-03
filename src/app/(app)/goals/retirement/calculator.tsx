@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useTransition } from "react";
 import { Disclaimer } from "@/components/page";
 import { useLocale, useT } from "@/i18n/client";
 import type { Locale, MessageKey } from "@/i18n/config";
@@ -70,10 +70,18 @@ function useFormatters() {
 }
 
 /** Kalkulator emerytury: założenia po prawej (pod spodem na telefonie), wynik liczony na bieżąco. */
-export function RetirementCalculator({ defaults }: { defaults: AssumptionValues }) {
+export function RetirementCalculator({
+  defaults,
+  save,
+}: {
+  defaults: AssumptionValues;
+  save: (values: AssumptionValues) => Promise<{ ok: boolean; message: string }>;
+}) {
   const t = useT("retirement");
   const tc = useT("common");
   const [values, setValues] = useState(defaults);
+  const [saving, startSaving] = useTransition();
+  const [saveState, setSaveState] = useState<{ ok: boolean; message: string } | null>(null);
   const parsed = useMemo(() => parseAssumptions(values), [values]);
   const result = useMemo(() => (parsed.status === "ok" ? calculateRetirement(parsed.input) : null), [parsed]);
   const errors = parsed.status === "ok" ? {} : parsed.errors;
@@ -109,9 +117,31 @@ export function RetirementCalculator({ defaults }: { defaults: AssumptionValues 
               field={field}
               value={values[field]}
               error={errors[field]}
-              onChange={(v) => setValues((prev) => ({ ...prev, [field]: v }))}
+              onChange={(v) => {
+                setSaveState(null);
+                setValues((prev) => ({ ...prev, [field]: v }));
+              }}
             />
           ))}
+        </div>
+        <div className="mt-4 grid gap-2">
+          <button
+            type="button"
+            disabled={saving}
+            aria-busy={saving}
+            onClick={() => startSaving(async () => setSaveState(await save(values)))}
+            className="h-11 justify-self-start rounded-[10px] bg-brand px-4 font-semibold text-on-brand shadow-card transition-colors hover:bg-brand-strong disabled:opacity-60"
+          >
+            {t("save")}
+          </button>
+          {saveState ? (
+            <p
+              role={saveState.ok ? "status" : "alert"}
+              className={`rounded-[10px] px-3 py-2 text-sm ${saveState.ok ? "bg-brand-soft text-ink" : "bg-down-soft text-down"}`}
+            >
+              {saveState.message}
+            </p>
+          ) : null}
         </div>
       </section>
     </div>

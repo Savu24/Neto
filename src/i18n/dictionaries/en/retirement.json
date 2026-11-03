@@ -59,5 +59,7 @@
   "errorNumber": "Enter a number.",
   "errorInteger": "Enter a whole number.",
   "errorMin": "Enter a value of at least {min}.",
-  "errorRange": "Enter a value from {min} to {max}."
+  "errorRange": "Enter a value from {min} to {max}.",
+  "save": "Save assumptions",
+  "saved": "Assumptions saved. Starting wealth comes from your accounts."
 }
