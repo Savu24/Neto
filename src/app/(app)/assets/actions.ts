@@ -154,6 +154,8 @@ export async function recordTransactionAction(_: ActionState, fd: FormData): Pro
     return errorState(e, f);
   }
   refresh();
+  // Szybka wpłata/wypłata z pulpitu: zostajemy na pulpicie, formularz sam się zamyka.
+  if (f.returnTo === "dashboard") return { message: "saved" };
   redirect(
     `/assets/${f.accountId}${f.assetId && f.mode !== "bond" && f.returnTo === "position" ? `/${f.assetId}` : ""}`,
   );

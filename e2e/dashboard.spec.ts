@@ -59,3 +59,27 @@ test("kalkulator emerytury zapisuje założenia i bierze majątek z kont", async
   await expect(page.getByLabel("Planowany wiek emerytalny")).toHaveValue("60");
   await expect(page.getByLabel("Wydatki miesięczne na emeryturze")).toHaveValue("9000");
 });
+
+test("szybka wpłata i wypłata z pulpitu", async ({ authedPage: page }) => {
+  await page.goto("/add/account");
+  await page.getByRole("radio", { name: "Rachunek", exact: true }).check();
+  await page.getByLabel("Nazwa").fill("Konto główne");
+  await page.getByLabel("Saldo").fill("1 000,00");
+  await page.getByRole("button", { name: "Dodaj konto" }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Konto główne" })).toBeVisible();
+
+  await page.goto("/dashboard");
+  const quick = page.getByRole("group", { name: "Szybka wpłata lub wypłata" });
+  await quick.getByRole("button", { name: "Dodaj wpłatę" }).click();
+  await quick.getByLabel("Kwota").fill("500");
+  await quick.getByRole("button", { name: "Zapisz wpłatę" }).click();
+  await expect(quick.getByRole("status")).toHaveText("Wpłata zapisana.");
+  await expect(page).toHaveURL(/\/dashboard/);
+  await expect(page.getByTestId("dashboard-net-worth")).toHaveText(/^1500,00\s*zł$/);
+
+  await quick.getByRole("button", { name: "Dodaj wypłatę" }).click();
+  await quick.getByLabel("Kwota").fill("200");
+  await quick.getByRole("button", { name: "Zapisz wypłatę" }).click();
+  await expect(quick.getByRole("status")).toHaveText("Wypłata zapisana.");
+  await expect(page.getByTestId("dashboard-net-worth")).toHaveText(/^1300,00\s*zł$/);
+});

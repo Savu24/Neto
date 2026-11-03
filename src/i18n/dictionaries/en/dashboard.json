@@ -43,5 +43,16 @@
   "colValue": "Value",
   "colResult": "Result",
   "colShare": "Share",
-  "allocOther": "Other"
+  "allocOther": "Other",
+  "quickDeposit": "Add deposit",
+  "quickWithdrawal": "Add withdrawal",
+  "quickAccount": "Account",
+  "quickAmount": "Amount",
+  "quickDate": "Date",
+  "saveDeposit": "Save deposit",
+  "saveWithdrawal": "Save withdrawal",
+  "cancel": "Cancel",
+  "quickSavedDeposit": "Deposit saved.",
+  "quickSavedWithdrawal": "Withdrawal saved.",
+  "quickLabel": "Quick deposit or withdrawal"
 }

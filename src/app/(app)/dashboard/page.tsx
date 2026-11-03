@@ -4,7 +4,8 @@ import { Disclaimer, EmptyState, PageHeader } from "@/components/page";
 import { BellIcon } from "@/components/icons";
 import { PrivacyToggle } from "@/components/privacy-toggle";
 import type { Locale, MessageKey } from "@/i18n/config";
-import { getLocale, getT } from "@/i18n/server";
+import { I18nProvider } from "@/i18n/client";
+import { getLocale, getT, pickMessages } from "@/i18n/server";
 import { requireUser } from "@/lib/auth/session";
 import { db } from "@/lib/db/client";
 import { scopedDb } from "@/lib/db/scoped";
@@ -14,6 +15,7 @@ import { unreadCount } from "@/lib/notifications/service";
 import { loadGoals } from "@/lib/portfolio/goal-service";
 import { loadPortfolio } from "@/lib/portfolio/ledger/load";
 import { loadNetWorthSeries, type SeriesPoint } from "@/lib/portfolio/ledger/net-worth-series";
+import { acceptsTransfers } from "@/lib/portfolio/ledger/types";
 import {
   addDays,
   addMonths,
@@ -25,6 +27,7 @@ import {
 import { dateOf } from "../assets/ui";
 import { ProgressBar } from "../goals/ui";
 import { NetWorthChart } from "./chart";
+import { QuickCash } from "./quick-cash";
 
 export const metadata: Metadata = { title: "Pulpit" };
 
@@ -84,6 +87,9 @@ export default async function DashboardPage({ searchParams }: PageProps<"/dashbo
   ]);
   const mainGoal = goals.find((g) => g.isMain) ?? goals[0] ?? null;
   const changes = netWorthChanges(series.points, today);
+  const quickAccounts = portfolio.accounts
+    .filter((a) => acceptsTransfers(a.type))
+    .map((a) => ({ id: a.id, name: a.name, currency: a.currency }));
   const money = (v: string, signed = false) => formatMoney(v, "PLN", locale, { signed });
   const query = (patch: Record<string, string>) =>
     `/dashboard?${new URLSearchParams({ range, alloc, ...patch })}`;
@@ -215,6 +221,11 @@ export default async function DashboardPage({ searchParams }: PageProps<"/dashbo
                 </>
               ) : null}
             </div>
+            {quickAccounts.length > 0 ? (
+              <I18nProvider locale={locale} messages={pickMessages(locale, ["common", "dashboard"])}>
+                <QuickCash accounts={quickAccounts} today={today} />
+              </I18nProvider>
+            ) : null}
           </section>
 
           <section

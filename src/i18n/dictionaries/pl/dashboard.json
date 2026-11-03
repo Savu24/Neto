@@ -43,5 +43,16 @@
   "colValue": "Wartość",
   "colResult": "Wynik",
   "colShare": "Udział",
-  "allocOther": "Pozostałe"
+  "allocOther": "Pozostałe",
+  "quickDeposit": "Dodaj wpłatę",
+  "quickWithdrawal": "Dodaj wypłatę",
+  "quickAccount": "Konto",
+  "quickAmount": "Kwota",
+  "quickDate": "Data",
+  "saveDeposit": "Zapisz wpłatę",
+  "saveWithdrawal": "Zapisz wypłatę",
+  "cancel": "Anuluj",
+  "quickSavedDeposit": "Wpłata zapisana.",
+  "quickSavedWithdrawal": "Wypłata zapisana.",
+  "quickLabel": "Szybka wpłata lub wypłata"
 }
