@@ -63,6 +63,7 @@
   "staleValuation": "Wycena z {date}, zaktualizuj",
   "staleBalance": "Saldo z {date}, zaktualizuj",
   "stalePrice": "Cena z dnia {date}",
+  "staleFx": "Kurs {currency} z dnia {date}",
   "valuationFrom": "Wycena z {date}",
   "balanceFrom": "Saldo z {date}",
   "depositSub": "Do {date}, z naliczonymi odsetkami",

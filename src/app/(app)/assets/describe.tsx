@@ -20,9 +20,17 @@ export function positionFlags(p: PositionView, t: T, locale: Locale): ReactNode[
   if (p.priceFromTrade) flags.push(<Tag tone="warn">{t("noValuationTrade")}</Tag>);
   else if (p.missingPrice) flags.push(<Tag tone="warn">{t("noValuation")}</Tag>);
   if (p.missingFx) flags.push(<Tag tone="warn">{t("noFx", { currency: p.currency })}</Tag>);
-  if (p.stale && p.kind === "market")
+  if (p.stale) {
+    const date = formatDate(dateOf(p.stale.sourceDate), locale);
+    if (p.kind === "market") flags.push(<Tag tone="warn">{t("stalePrice", { date })}</Tag>);
+    else if (p.kind === "manual") flags.push(<Tag tone="warn">{t("staleValuation", { date })}</Tag>);
+    else if (p.kind === "liability") flags.push(<Tag tone="warn">{t("staleBalance", { date })}</Tag>);
+  }
+  if (p.fxStale)
     flags.push(
-      <Tag tone="warn">{t("stalePrice", { date: formatDate(dateOf(p.stale.sourceDate), locale) })}</Tag>,
+      <Tag tone="warn">
+        {t("staleFx", { currency: p.currency, date: formatDate(dateOf(p.fxStale.sourceDate), locale) })}
+      </Tag>,
     );
   if (p.checkRate) flags.push(<Tag tone="warn">{t("depositCheckRate")}</Tag>);
   if (p.bondRateMissing) flags.push(<Tag tone="warn">{t("bondRateMissing")}</Tag>);
@@ -69,6 +77,15 @@ export function accountSub(a: AccountView, t: T, locale: Locale): ReactNode {
             rate: formatNumber(main.fxRate, locale, 4),
           }),
         );
+        if (main.fxStale)
+          parts.push(
+            <Tag tone="warn">
+              {t("staleFx", {
+                currency: a.currency,
+                date: formatDate(dateOf(main.fxStale.sourceDate), locale),
+              })}
+            </Tag>,
+          );
       } else parts.push(a.currency);
     }
   }
