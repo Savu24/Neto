@@ -472,6 +472,8 @@ Budżet miesięczny i kategorie, cykliczne płatności, wspólne konta dla dwóc
 | Data | Zmiana | Kto |
 | --- | --- | --- |
 | 02.11.2026 | Pierwsza wersja do akceptacji | Claude Code (Etap 1) |
+| 02.11.2026 | Logowanie: własne sesje w bazie (wzorzec Lucia) zamiast Auth.js, Google przez arctic | Claude Code (Etap 4) |
+| 03.11.2026 | Aplikacja do użytku własnego właściciela. iPhone przez PWA z ekranu głównego zamiast Capacitora: wypadają Etap 11 (powłoka iOS, Codemagic, TestFlight) i wysyłka do App Store (Etap 12 część sklepowa, Etap 14 recenzja). Rejestracja zostaje otwarta; szkice prawne i sklepowe zostają w repo bez dalszej pracy | właściciel |
 
 ## 20. Makiety i kierunek wizualny
 
