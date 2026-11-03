@@ -14,6 +14,8 @@ import { runSeedCatalog } from "./seed-catalog";
 
 const PORT = Number(process.env.E2E_PORT ?? 3100);
 export const MAIL_DIR = path.resolve("test-results/mail");
+/** Testowy sekret crona (e2e woła /api/cron/* sam); nigdy nie jest produkcyjnym CRON_SECRET. */
+export const E2E_CRON_SECRET = "e2e-cron-secret";
 
 function freePort(): Promise<number> {
   return new Promise((resolve, reject) => {
@@ -74,6 +76,7 @@ async function main() {
         AUTH_SECRET: randomBytes(32).toString("base64"),
         FIELD_ENCRYPTION_KEY: randomBytes(32).toString("base64"),
         MAIL_OUTBOX_DIR: MAIL_DIR,
+        CRON_SECRET: E2E_CRON_SECRET,
       },
     },
   );

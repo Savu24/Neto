@@ -48,5 +48,9 @@
   "deleteAction": "Usuń konto",
   "profile": "Profil",
   "signOut": "Wyloguj",
-  "backupCodesDone": "Zapisane, zamknij"
+  "backupCodesDone": "Zapisane, zamknij",
+  "notifications": "Powiadomienia",
+  "notificationsUnread": "Nowe: {count}",
+  "notificationPrefs": "Ustawienia powiadomień",
+  "notificationPrefsHint": "W aplikacji i e-mail"
 }

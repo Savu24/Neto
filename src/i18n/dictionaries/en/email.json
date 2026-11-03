@@ -14,5 +14,12 @@
   "deletionRequestedSubject": "Your Neto account will be deleted",
   "deletionRequestedBody": "Deletion of your Neto account was requested. Your data will be permanently deleted on {date}.\n\nTo cancel, just sign in before that date.",
   "deletionCancelledSubject": "Neto account deletion cancelled",
-  "deletionCancelledBody": "You signed in to your Neto account, so the requested deletion was cancelled. Your data stays."
+  "deletionCancelledBody": "You signed in to your Neto account, so the requested deletion was cancelled. Your data stays.",
+  "weeklySubject": "Your Neto weekly summary",
+  "weeklyBody": "Net worth on {to}: {netWorth}.\nChange since {from}: {change}{percent}.\n\nDetails in the app: {link}",
+  "goalSubject": "Goal reached: {name}",
+  "goalBody": "Your goal “{name}” ({target}) is reached. Congratulations!\n\nSee your goals: {link}",
+  "staleSubject": "Some valuations in Neto need updating",
+  "staleBody": "Positions with an outdated valuation or no price: {count}.\n\nUpdate them in Assets: {link}",
+  "notificationFooter": "This information is for reference only and is not investment advice.\nTurn off email notifications in settings: {prefs}"
 }
