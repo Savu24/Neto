@@ -48,5 +48,9 @@
   "deleteAction": "Delete account",
   "profile": "Profile",
   "signOut": "Sign out",
-  "backupCodesDone": "Saved, close"
+  "backupCodesDone": "Saved, close",
+  "notifications": "Notifications",
+  "notificationsUnread": "New: {count}",
+  "notificationPrefs": "Notification settings",
+  "notificationPrefsHint": "In the app and by email"
 }

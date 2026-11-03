@@ -3,6 +3,9 @@ import Link from "next/link";
 import { PageHeader } from "@/components/page";
 import { getLocale, getT } from "@/i18n/server";
 import { requireUser } from "@/lib/auth/session";
+import { db } from "@/lib/db/client";
+import { scopedDb } from "@/lib/db/scoped";
+import { unreadCount } from "@/lib/notifications/service";
 import { logoutAction } from "../../(auth)/actions";
 import { setPreference } from "./actions";
 
@@ -10,7 +13,11 @@ export const metadata: Metadata = { title: "Ustawienia" };
 
 export default async function SettingsPage() {
   const { user } = await requireUser();
-  const [t, locale] = await Promise.all([getT("settings"), getLocale()]);
+  const [t, locale, unread] = await Promise.all([
+    getT("settings"),
+    getLocale(),
+    unreadCount(scopedDb(db(), user.id)),
+  ]);
 
   return (
     <>
@@ -25,8 +32,27 @@ export default async function SettingsPage() {
               </span>
             </Link>
           </li>
-          <li className="py-3">
+          <li className="border-b border-line py-3">
             <Link href="/settings/data">{t("data")}</Link>
+          </li>
+          <li className="border-b border-line py-3">
+            <Link href="/notifications" className="flex items-center justify-between gap-3">
+              <span>{t("notifications")}</span>
+              {unread > 0 ? (
+                <span
+                  data-testid="unread-count"
+                  className="rounded-full bg-brand px-2 py-px text-[12.5px] font-semibold text-on-brand"
+                >
+                  {t("notificationsUnread", { count: unread })}
+                </span>
+              ) : null}
+            </Link>
+          </li>
+          <li className="py-3">
+            <Link href="/settings/notifications" className="flex justify-between gap-3">
+              <span>{t("notificationPrefs")}</span>
+              <span className="text-sm text-ink-2">{t("notificationPrefsHint")}</span>
+            </Link>
           </li>
         </ul>
       </section>

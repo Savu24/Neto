@@ -14,5 +14,12 @@
   "deletionRequestedSubject": "Twoje konto Neto zostanie usunięte",
   "deletionRequestedBody": "Zgłoszono usunięcie Twojego konta Neto. Dane zostaną trwale usunięte {date}.\n\nAby anulować, po prostu zaloguj się przed tą datą.",
   "deletionCancelledSubject": "Usunięcie konta Neto anulowane",
-  "deletionCancelledBody": "Zalogowano się na Twoje konto Neto, więc zgłoszone usunięcie zostało anulowane. Twoje dane zostają."
+  "deletionCancelledBody": "Zalogowano się na Twoje konto Neto, więc zgłoszone usunięcie zostało anulowane. Twoje dane zostają.",
+  "weeklySubject": "Podsumowanie tygodnia w Neto",
+  "weeklyBody": "Wartość netto na {to}: {netWorth}.\nZmiana od {from}: {change}{percent}.\n\nSzczegóły w aplikacji: {link}",
+  "goalSubject": "Osiągnięto cel: {name}",
+  "goalBody": "Cel „{name}” ({target}) jest osiągnięty. Gratulacje!\n\nZobacz cele: {link}",
+  "staleSubject": "Część wycen w Neto wymaga aktualizacji",
+  "staleBody": "Pozycje z nieaktualną wyceną lub bez ceny: {count}.\n\nZaktualizuj je w Majątku: {link}",
+  "notificationFooter": "Dane mają charakter informacyjny i nie stanowią porady inwestycyjnej.\nPowiadomienia e-mail wyłączysz w ustawieniach: {prefs}"
 }
